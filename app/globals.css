@@ -256,6 +256,44 @@ body {
   animation: ambientAuraPulse 6s ease-in-out infinite;
 }
 
+/* Infinite Marquee Tickers (Synchronized Speed) */
+@keyframes marqueeLeftToRight {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+@keyframes marqueeRightToLeft {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeftToRight 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: marqueeRightToLeft 38s linear infinite;
+  will-change: transform;
+}
+
+.marquee-container:hover .animate-marquee-ltr,
+.marquee-container:hover .animate-marquee-rtl {
+  animation-play-state: paused;
+}
+
 /* Reduced Motion Override for Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .animate-zg-back,
