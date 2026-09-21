@@ -1,13 +1,28 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
 import { SITE_DATA } from "../../data/siteData";
 
+// Map each industry vertical to its authentic high-definition image
+const INDUSTRY_IMAGES: Record<string, string> = {
+  logistics: "/industries/industry_logistics.jpg",
+  healthcare: "/industries/industry_healthcare.jpg",
+  travel: "/industries/industry_travel.jpg",
+  ecommerce: "/industries/industry_ecommerce.jpg",
+  finance: "/industries/industry_finance.jpg",
+  education: "/industries/industry_education.jpg",
+  sports: "/industries/industry_sports.jpg",
+  restaurant: "/industries/industry_restaurant.jpg",
+  "real-estate": "/industries/industry_real_estate.jpg",
+};
+
 export default function Industries() {
   const [activeTab, setActiveTab] = useState(0);
   const activeIndustry = SITE_DATA.industries[activeTab];
+  const activeImage = INDUSTRY_IMAGES[activeIndustry.id] || "/industries/industry_logistics.jpg";
 
   return (
     <section id="industries" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
@@ -57,12 +72,28 @@ export default function Industries() {
 
           {/* Right Column: Dynamic Interactive Showcase Card */}
           <div className="lg:col-span-8">
-            <div className="glass-card p-8 sm:p-10 relative overflow-hidden border-white/10 min-h-[420px] flex flex-col justify-between">
-              {/* Background Geometric Accent */}
-              <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070F3]/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-[#00E599]/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="glass-card p-8 sm:p-10 relative overflow-hidden border-white/10 min-h-[440px] flex flex-col justify-between shadow-2xl">
+              {/* Dynamic Tailored Industry Background Image */}
+              <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                <Image
+                  key={activeIndustry.id}
+                  src={activeImage}
+                  alt={activeIndustry.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 65vw"
+                  className="object-cover object-center scale-100 transition-all duration-700 ease-out opacity-35"
+                  priority
+                />
+                {/* Contrast Vignette Gradient: heavy on text side, transparent on image side */}
+                <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-[#070B14] via-[#070B14]/85 to-[#070B14]/45" />
+                <div className="absolute inset-0 bg-[#070B14]/30 backdrop-blur-[1px]" />
+              </div>
 
-              <div>
+              {/* Background Ambient Glow Accents */}
+              <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070F3]/15 rounded-full blur-3xl pointer-events-none z-0" />
+              <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-[#00E599]/15 rounded-full blur-2xl pointer-events-none z-0" />
+
+              <div className="relative z-10">
                 {/* Active Indicator & Sector */}
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.08]">
                   <div className="flex items-center gap-2">
