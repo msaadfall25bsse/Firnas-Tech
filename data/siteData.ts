@@ -368,21 +368,25 @@ export const SITE_DATA = {
       name: "Noman Tariq",
       role: "CTO / Backend & AI Lead",
       skills: ["Python", "AI / LLMs", "Computer Vision", "NLP", "FastAPI"],
+      image: "/team/noman_tariq.png",
     },
     {
       name: "Asfand Yar",
       role: "Lead Visual & Brand Designer",
       skills: ["Figma", "UI/UX", "Adobe Suite", "3D Motion", "Brand Systems"],
+      image: "/team/asfand_yar.png",
     },
     {
       name: "Asim Tariq",
       role: "Senior Mobile Engineer",
       skills: ["Android", "iOS", "Flutter", "React Native", "Java / Kotlin"],
+      image: "/team/asim_tariq.png",
     },
     {
       name: "Muhammad Haris",
       role: "Lead CMS & Web Architect",
       skills: ["WordPress", "Shopify", "Webflow", "Next.js", "Framer"],
+      image: "/team/muhammad_haris.png",
     },
   ],
   hiringSteps: [

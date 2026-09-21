@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
 import { SITE_DATA } from "../../data/siteData";
@@ -25,18 +26,28 @@ export default function TalentNetwork() {
           {SITE_DATA.talentNetwork.map((talent) => (
             <div
               key={talent.name}
-              className="glass-card p-6 flex flex-col justify-between group hover:border-[#0070F3]/50 transition duration-300"
+              className="glass-card p-5 sm:p-6 flex flex-col justify-between group hover:border-[#0070F3]/60 transition-all duration-500 shadow-xl"
             >
               <div>
-                {/* Avatar Placeholder / High-Tech Monogram */}
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00E599]/20 to-[#0070F3]/30 border border-white/10 flex items-center justify-center text-lg font-bold text-white mb-4 group-hover:scale-105 transition-transform duration-300">
-                  {talent.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                {/* Official Talent Portrait Photo */}
+                <div className="w-full aspect-square max-h-56 rounded-2xl overflow-hidden relative mb-4 bg-white/[0.02] border border-white/10 group-hover:border-[#00E599]/50 shadow-inner transition-all duration-300">
+                  <Image
+                    src={talent.image || "/team/noman_tariq.png"}
+                    alt={talent.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                  {/* Subtle Gradient & Verified Tag */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080F]/80 via-transparent to-transparent opacity-60" />
+                  <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md border border-white/10 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00E599] animate-pulse" />
+                    <span className="text-[10px] font-mono text-white/90">VERIFIED</span>
+                  </div>
                 </div>
 
-                <h3 className="text-base font-bold text-white mb-1 group-hover:text-[#00E599] transition-colors">
+                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-[#00E599] transition-colors">
                   {talent.name}
                 </h3>
                 <div className="text-xs text-[#00A3FF] font-medium mb-4">
