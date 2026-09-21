@@ -98,7 +98,7 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
           <Badge variant="emerald" dot size="sm" className="mb-4">
             Our Core Offerings
           </Badge>
@@ -116,12 +116,13 @@ export default function Services() {
             const isBlue = index % 2 === 1;
             const bgImage = SERVICE_IMAGES[service.id] || "/services/service_web_dev.jpg";
             const isActive = activeCardId === service.id;
+            const staggerClass = `stagger-${(index % 4) + 1}`;
 
             return (
               <div
                 key={service.id}
                 onClick={() => handleCardClick(service)}
-                className={`relative min-h-[410px] rounded-3xl overflow-hidden glass-card border border-white/[0.09] transition-all duration-500 cursor-pointer group select-none shadow-xl ${
+                className={`relative min-h-[410px] rounded-3xl overflow-hidden glass-card border border-white/[0.09] transition-all duration-500 cursor-pointer group select-none shadow-xl scroll-reveal ${staggerClass} ${
                   isBlue
                     ? "hover:border-[#0070F3]/60 hover:shadow-[0_0_35px_rgba(0,112,243,0.25)]"
                     : "hover:border-[#00E599]/60 hover:shadow-[0_0_35px_rgba(0,229,153,0.25)]"

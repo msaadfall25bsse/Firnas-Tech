@@ -8,7 +8,7 @@ export default function EngagementModels() {
     <section id="models" className="relative py-28 bg-[#05080F] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
           <Badge variant="emerald" dot size="sm" className="mb-4">
             Collaboration Frameworks
           </Badge>
@@ -22,10 +22,12 @@ export default function EngagementModels() {
 
         {/* 2 Premium Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {SITE_DATA.engagementModels.map((model) => (
+          {SITE_DATA.engagementModels.map((model, idx) => (
             <div
               key={model.id}
               className={`glass-card p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden ${
+                idx === 0 ? "scroll-reveal-left" : "scroll-reveal-right"
+              } ${
                 model.highlight
                   ? "border-[#00E599]/40 shadow-[0_0_40px_-15px_rgba(0,229,153,0.2)]"
                   : "border-white/10"

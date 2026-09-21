@@ -13,7 +13,7 @@ export default function GlobalPresence() {
     <section id="global" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
           <Badge variant="emerald" dot size="sm" className="mb-4">
             Global Delivery Network
           </Badge>
@@ -28,7 +28,7 @@ export default function GlobalPresence() {
         {/* Global Network Visual & Location Details */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left: 3D Interactive Rotating Cyber Globe */}
-          <div className="lg:col-span-7 relative">
+          <div className="lg:col-span-7 relative scroll-reveal-scale">
             <div className="glass-card p-4 sm:p-6 rounded-3xl relative flex flex-col items-center justify-center overflow-hidden border-white/10 bg-[#05080F]/90 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
               {/* Ambient Grid Backdrop */}
               <div className="absolute inset-0 bg-grid-cyber opacity-30 pointer-events-none" />
@@ -58,7 +58,7 @@ export default function GlobalPresence() {
           </div>
 
           {/* Right: Active Location Deep-Dive Card */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 scroll-reveal-right">
             <div className="glass-card p-6 sm:p-8 border-white/10 relative overflow-hidden">
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.08]">
                 <div className="flex items-center gap-2">

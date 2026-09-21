@@ -12,7 +12,7 @@ export default function ProductProcess() {
     <section id="process" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
           <Badge variant="blue" dot size="sm" className="mb-4">
             Engineering Methodology
           </Badge>
@@ -25,7 +25,7 @@ export default function ProductProcess() {
         </div>
 
         {/* Desktop Horizontal Interactive Timeline (hidden on mobile) */}
-        <div className="hidden lg:block max-w-6xl mx-auto mb-16">
+        <div className="hidden lg:block max-w-6xl mx-auto mb-16 scroll-reveal-scale">
           {/* Progress Connector Track */}
           <div className="relative mb-10">
             <div className="absolute top-1/2 left-8 right-8 h-1 bg-white/[0.08] -translate-y-1/2 rounded-full" />
@@ -87,7 +87,7 @@ export default function ProductProcess() {
         </div>
 
         {/* Mobile Vertical Connected Timeline (visible on mobile and tablet) */}
-        <div className="lg:hidden relative max-w-xl mx-auto space-y-6 mb-12">
+        <div className="lg:hidden relative max-w-xl mx-auto space-y-6 mb-12 scroll-reveal-scale">
           {/* Vertical Track Line */}
           <div className="absolute top-4 bottom-4 left-6 w-0.5 bg-gradient-to-b from-[#00E599] via-[#0070F3] to-[#00E599]/20" />
 
@@ -122,7 +122,7 @@ export default function ProductProcess() {
         </div>
 
         {/* Process CTA */}
-        <div className="text-center">
+        <div className="text-center scroll-reveal-scale">
           <Button href="#contact" variant="primary-emerald" size="md">
             Fuel Your Digital Idea with 60+ Experts
           </Button>

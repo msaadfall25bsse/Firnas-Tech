@@ -14,7 +14,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Narrative & Mission */}
-          <div className="lg:col-span-6 flex flex-col gap-6">
+          <div className="lg:col-span-6 flex flex-col gap-6 scroll-reveal-left">
             <div className="inline-flex">
               <Badge variant="blue" dot size="sm">
                 About FIRNAS.TECH
@@ -64,7 +64,7 @@ export default function About() {
           </div>
 
           {/* Right Column: Official About Us Showcase Banner & Stats */}
-          <div className="lg:col-span-6 flex flex-col gap-6">
+          <div className="lg:col-span-6 flex flex-col gap-6 scroll-reveal-right">
             {/* 1. Official Banner Container with Cyber HUD Bezel */}
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden glass-card p-2 sm:p-3 border-[#00E599]/25 shadow-[0_0_40px_-10px_rgba(0,229,153,0.2)] group transition-all duration-500 hover:border-[#00E599]/50 hover:shadow-[0_0_50px_-5px_rgba(0,229,153,0.3)]">
               {/* Top HUD Telemetry */}

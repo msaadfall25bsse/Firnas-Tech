@@ -27,7 +27,7 @@ export default function Careers() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Narrative & CTA */}
-          <div className="lg:col-span-6 flex flex-col gap-6">
+          <div className="lg:col-span-6 flex flex-col gap-6 scroll-reveal-left">
             <div className="inline-flex">
               <Badge variant="emerald" dot size="sm">
                 Join the Flight
@@ -57,7 +57,7 @@ export default function Careers() {
             {perks.map((perk, i) => (
               <div
                 key={perk.title}
-                className="glass-card p-6 border-white/[0.08] flex flex-col justify-between hover:border-[#00E599]/40 transition duration-300"
+                className={`glass-card p-6 border-white/[0.08] flex flex-col justify-between hover:border-[#00E599]/40 transition duration-300 scroll-reveal-right stagger-${i + 1}`}
               >
                 <div>
                   <span className="text-xs font-mono text-[#00E599] mb-2 block">

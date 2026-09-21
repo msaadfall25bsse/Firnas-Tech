@@ -28,7 +28,7 @@ export default function Industries() {
     <section id="industries" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
           <Badge variant="blue" dot size="sm" className="mb-4">
             Domain Expertise
           </Badge>
@@ -43,7 +43,7 @@ export default function Industries() {
         {/* Interactive Industry Explorer */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Vertical/Horizontal Industry Tab List */}
-          <div className="lg:col-span-4 flex flex-row lg:flex-col gap-2 overflow-x-auto pb-4 lg:pb-0 scrollbar-none">
+          <div className="lg:col-span-4 flex flex-row lg:flex-col gap-2 overflow-x-auto pb-4 lg:pb-0 scrollbar-none scroll-reveal-left">
             {SITE_DATA.industries.map((ind, index) => {
               const isActive = activeTab === index;
               return (
@@ -71,7 +71,7 @@ export default function Industries() {
           </div>
 
           {/* Right Column: Dynamic Interactive Showcase Card */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 scroll-reveal-scale">
             <div className="glass-card p-8 sm:p-10 relative overflow-hidden border-white/10 min-h-[440px] flex flex-col justify-between shadow-2xl">
               {/* Dynamic Tailored Industry Background Image */}
               <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">

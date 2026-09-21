@@ -76,7 +76,7 @@ export default function Technologies() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-12">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto scroll-reveal">
           <Badge variant="emerald" dot size="sm" className="mb-4">
             Technology Ecosystem
           </Badge>
@@ -90,7 +90,7 @@ export default function Technologies() {
       </div>
 
       {/* 3 Continuous Moving Streams with Identical Speed */}
-      <div className="relative w-full overflow-hidden marquee-container flex flex-col gap-6 py-4">
+      <div className="relative w-full overflow-hidden marquee-container flex flex-col gap-6 py-4 scroll-reveal-scale">
         {/* Left & Right Smooth Vignette Fade Overlays */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-44 bg-gradient-to-r from-[#05080F] via-[#05080F]/90 to-transparent z-20" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-44 bg-gradient-to-l from-[#05080F] via-[#05080F]/90 to-transparent z-20" />

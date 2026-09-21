@@ -41,7 +41,7 @@ export default function Contact() {
     <section id="contact" className="relative py-28 bg-[#05080F] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
           <Badge variant="emerald" dot size="sm" className="mb-4">
             Direct Inquiries
           </Badge>
@@ -55,7 +55,7 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Real Contact Info & Office Addresses */}
-          <div className="lg:col-span-5 flex flex-col gap-8">
+          <div className="lg:col-span-5 flex flex-col gap-8 scroll-reveal-left">
             {/* Quick Contact Cards */}
             <div className="glass-card p-6 border-white/10 flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#00E599]/10 text-[#00E599] flex items-center justify-center shrink-0">
@@ -114,7 +114,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Interactive Consultation Form */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 scroll-reveal-right">
             <div className="glass-card p-8 sm:p-10 border-white/10 relative overflow-hidden">
               {submitted ? (
                 <div className="text-center py-12 animate-in fade-in duration-300">

@@ -16,10 +16,18 @@ import Careers from "../components/sections/Careers";
 import FinalCta from "../components/sections/FinalCta";
 import Contact from "../components/sections/Contact";
 import Footer from "../components/layout/Footer";
+import ScrollProgressBar from "../components/effects/ScrollProgressBar";
+import ScrollObserver from "../components/effects/ScrollObserver";
+import ScrollToTop from "../components/effects/ScrollToTop";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[#05080F] text-[#F8FAFC]">
+      {/* 0. Cyber Scroll Progress Tracker & Observers */}
+      <ScrollProgressBar />
+      <ScrollObserver />
+      <ScrollToTop />
+
       {/* 1. Sticky/Fixed Navbar */}
       <Navbar />
 

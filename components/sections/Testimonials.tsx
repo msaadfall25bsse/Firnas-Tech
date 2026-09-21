@@ -25,7 +25,7 @@ export default function Testimonials() {
     <section id="testimonials" className="relative py-28 bg-[#05080F] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
           <Badge variant="emerald" dot size="sm" className="mb-4">
             Client Testimonials
           </Badge>
@@ -38,7 +38,7 @@ export default function Testimonials() {
         </div>
 
         {/* Testimonial Interactive Showcase Card */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto scroll-reveal-scale">
           <div className="glass-card p-8 sm:p-12 relative overflow-hidden border-white/10 shadow-2xl min-h-[320px] flex flex-col justify-between">
             {/* Ambient Background Accent */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#00E599]/10 rounded-full blur-3xl pointer-events-none" />

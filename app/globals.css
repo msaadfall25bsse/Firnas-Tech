@@ -305,3 +305,73 @@ body {
     transform: none !important;
   }
 }
+
+/* =======================================================
+   PROFESSIONAL HARDWARE-ACCELERATED SCROLL REVEAL ENGINE
+   100% Mobile & Cross-Device Compatible with GPU Offload
+   ======================================================= */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(0.96);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translate3d(-35px, 0, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translate3d(35px, 0, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Active In-View Revealed State */
+.scroll-reveal.is-visible,
+.scroll-reveal-scale.is-visible,
+.scroll-reveal-left.is-visible,
+.scroll-reveal-right.is-visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+/* Stagger Delays for Fluid Grid Cards */
+.stagger-1 { transition-delay: 60ms; }
+.stagger-2 { transition-delay: 130ms; }
+.stagger-3 { transition-delay: 200ms; }
+.stagger-4 { transition-delay: 270ms; }
+.stagger-5 { transition-delay: 340ms; }
+.stagger-6 { transition-delay: 410ms; }
+.stagger-7 { transition-delay: 480ms; }
+.stagger-8 { transition-delay: 550ms; }
+.stagger-9 { transition-delay: 620ms; }
+
+/* Reduced Motion Exemption */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal-scale,
+  .scroll-reveal-left,
+  .scroll-reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

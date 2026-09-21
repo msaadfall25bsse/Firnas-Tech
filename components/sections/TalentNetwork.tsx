@@ -9,7 +9,7 @@ export default function TalentNetwork() {
     <section id="talent" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
           <Badge variant="blue" dot size="sm" className="mb-4">
             Elite Engineering Pool
           </Badge>
@@ -23,10 +23,10 @@ export default function TalentNetwork() {
 
         {/* Selected Talent Profiles Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-14">
-          {SITE_DATA.talentNetwork.map((talent) => (
+          {SITE_DATA.talentNetwork.map((talent, idx) => (
             <div
               key={talent.name}
-              className="glass-card p-5 sm:p-6 flex flex-col justify-between group hover:border-[#0070F3]/60 transition-all duration-500 shadow-xl"
+              className={`glass-card p-5 sm:p-6 flex flex-col justify-between group hover:border-[#0070F3]/60 transition-all duration-500 shadow-xl scroll-reveal stagger-${idx + 1}`}
             >
               <div>
                 {/* Official Talent Portrait Photo */}
@@ -81,7 +81,7 @@ export default function TalentNetwork() {
         </div>
 
         {/* Global Talent CTA Bar */}
-        <div className="max-w-4xl mx-auto p-8 rounded-2xl glass-card border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+        <div className="max-w-4xl mx-auto p-8 rounded-2xl glass-card border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left scroll-reveal-scale">
           <div>
             <h4 className="text-xl font-extrabold text-white mb-1">
               Discover 150+ More Specialized Experts

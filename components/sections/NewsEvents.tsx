@@ -7,7 +7,7 @@ export default function NewsEvents() {
     <section id="news" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
           <Badge variant="cyan" dot size="sm" className="mb-4">
             Updates &amp; Academic Linkages
           </Badge>
@@ -21,10 +21,10 @@ export default function NewsEvents() {
 
         {/* News Editorial Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {SITE_DATA.newsAndEvents.map((news) => (
+          {SITE_DATA.newsAndEvents.map((news, idx) => (
             <div
               key={news.id}
-              className="glass-card p-6 flex flex-col justify-between group hover:border-[#0070F3]/50 transition duration-300"
+              className={`glass-card p-6 flex flex-col justify-between group hover:border-[#0070F3]/50 transition duration-300 scroll-reveal stagger-${idx + 1}`}
             >
               <div>
                 {/* Category & Date */}

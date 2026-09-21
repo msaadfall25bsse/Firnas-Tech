@@ -17,7 +17,7 @@ export default function FinalCta() {
         <div className="w-2.5 h-2.5 rounded-full bg-[#0070F3]/50 shadow-[0_0_10px_#0070F3]" />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 scroll-reveal-scale">
         <div className="inline-block text-xs uppercase font-mono tracking-widest text-[#00E599] mb-4">
           // INITIATE TRANSFORMATION
         </div>
