@@ -5,63 +5,83 @@ import Badge from "../ui/Badge";
 import Button from "../ui/Button";
 import { SITE_DATA, ServiceItem } from "../../data/siteData";
 
+import Image from "next/image";
+
+// Map each service to its tailored futuristic background image
+const SERVICE_IMAGES: Record<string, string> = {
+  "web-app": "/services/service_web_dev.jpg",
+  "mobile-app": "/services/service_mobile_dev.jpg",
+  "custom-software": "/services/service_custom_software.jpg",
+  "ai-ml": "/services/service_ai_ml.jpg",
+  "ui-ux": "/services/service_ui_ux.jpg",
+  "digital-marketing": "/services/service_digital_marketing.jpg",
+  "branding": "/services/service_branding.jpg",
+  "staff-augmentation": "/services/service_staff_aug.jpg",
+};
+
 export default function Services() {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
+
+  // Toggle active card for touch/mobile devices
+  const handleCardClick = (service: ServiceItem) => {
+    setActiveCardId((prev) => (prev === service.id ? null : service.id));
+  };
 
   // Custom SVG Icons for each service type
   const renderIcon = (type: ServiceItem["iconType"]) => {
     switch (type) {
       case "web":
         return (
-          <svg className="w-6 h-6 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
             <rect width="18" height="18" x="3" y="3" rx="2" />
             <path d="M3 9h18M9 21V9" />
           </svg>
         );
       case "mobile":
         return (
-          <svg className="w-6 h-6 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
             <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
             <path d="M12 18h.01" />
           </svg>
         );
       case "custom":
         return (
-          <svg className="w-6 h-6 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
             <polyline points="16 18 22 12 16 6" />
             <polyline points="8 6 2 12 8 18" />
           </svg>
         );
       case "ai":
         return (
-          <svg className="w-6 h-6 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
             <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
             <circle cx="12" cy="12" r="4" />
           </svg>
         );
       case "uiux":
         return (
-          <svg className="w-6 h-6 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
             <path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2c.8.8 2 .8 2.8 0L19 11Z" />
             <path d="m5 2 5 5M2 5l5 5" />
           </svg>
         );
       case "marketing":
         return (
-          <svg className="w-6 h-6 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
             <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
           </svg>
         );
       case "branding":
         return (
-          <svg className="w-6 h-6 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" />
             <path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24" />
           </svg>
         );
       case "staff":
         return (
-          <svg className="w-6 h-6 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
             <circle cx="9" cy="7" r="4" />
             <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
@@ -72,7 +92,7 @@ export default function Services() {
 
   return (
     <section id="services" className="relative py-28 bg-[#05080F] border-t border-white/[0.06] overflow-hidden">
-      {/* Background Accent */}
+      {/* Ambient Lighting Orbs */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00E599]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#0070F3]/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -90,77 +110,163 @@ export default function Services() {
           </p>
         </div>
 
-        {/* 8 Interactive Service Cards Grid */}
+        {/* 8 Interactive Hover/Tap Reveal Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SITE_DATA.services.map((service, index) => {
             const isBlue = index % 2 === 1;
+            const bgImage = SERVICE_IMAGES[service.id] || "/services/service_web_dev.jpg";
+            const isActive = activeCardId === service.id;
+
             return (
               <div
                 key={service.id}
-                className={`glass-card p-6 flex flex-col justify-between group ${
-                  isBlue ? "glass-card-blue" : ""
-                }`}
+                onClick={() => handleCardClick(service)}
+                className={`relative min-h-[410px] rounded-3xl overflow-hidden glass-card border border-white/[0.09] transition-all duration-500 cursor-pointer group select-none shadow-xl ${
+                  isBlue
+                    ? "hover:border-[#0070F3]/60 hover:shadow-[0_0_35px_rgba(0,112,243,0.25)]"
+                    : "hover:border-[#00E599]/60 hover:shadow-[0_0_35px_rgba(0,229,153,0.25)]"
+                } ${isActive ? "border-[#00E599] ring-1 ring-[#00E599]/50" : ""}`}
               >
-                <div>
-                  {/* Top Icon & Category Number */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                        isBlue
-                          ? "bg-[#0070F3]/10 text-[#00A3FF] group-hover:bg-[#0070F3] group-hover:text-white"
-                          : "bg-[#00E599]/10 text-[#00E599] group-hover:bg-[#00E599] group-hover:text-[#05080F]"
-                      }`}
-                    >
-                      {renderIcon(service.iconType)}
-                    </div>
-                    <span className="text-xs font-mono text-[#64748B] group-hover:text-[#94A3B8]">
-                      0{index + 1}
-                    </span>
+                {/* 1. Tailored Futuristic Background Image */}
+                <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+                  <Image
+                    src={bgImage}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className={`object-cover object-center transform transition-all duration-700 ease-out ${
+                      isActive
+                        ? "scale-110 opacity-15 filter blur-[2px]"
+                        : "scale-100 opacity-75 group-hover:scale-110 group-hover:opacity-15 group-hover:filter group-hover:blur-[2px]"
+                    }`}
+                    priority={index < 4}
+                  />
+                  {/* Subtle Dark Vignette & Base Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080F] via-[#05080F]/70 to-[#05080F]/40" />
+                  <div
+                    className={`absolute inset-0 bg-[#05080F] transition-opacity duration-500 ${
+                      isActive ? "opacity-85" : "opacity-0 group-hover:opacity-85"
+                    }`}
+                  />
+                </div>
+
+                {/* Top Corner Badge: Service Number */}
+                <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      isBlue ? "bg-[#0070F3]" : "bg-[#00E599]"
+                    } animate-pulse`}
+                  />
+                  <span className="text-[11px] font-mono text-white/80">0{index + 1}</span>
+                </div>
+
+                {/* 2. IDLE STATE: Main Heading at the Bottom */}
+                <div
+                  className={`absolute inset-x-0 bottom-0 p-6 z-10 flex flex-col justify-end transition-all duration-500 transform ${
+                    isActive
+                      ? "opacity-0 translate-y-4 pointer-events-none"
+                      : "opacity-100 translate-y-0 group-hover:opacity-0 group-hover:translate-y-4 group-hover:pointer-events-none"
+                  }`}
+                >
+                  <div
+                    className={`w-11 h-11 rounded-xl flex items-center justify-center mb-3.5 shadow-lg backdrop-blur-md border ${
+                      isBlue
+                        ? "bg-[#0070F3]/20 border-[#0070F3]/40 text-[#00A3FF]"
+                        : "bg-[#00E599]/20 border-[#00E599]/40 text-[#00E599]"
+                    }`}
+                  >
+                    {renderIcon(service.iconType)}
                   </div>
 
-                  {/* Title & Short Description */}
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#00E599] transition-colors">
+                  <span className="text-[10px] uppercase font-mono tracking-widest text-[#94A3B8] mb-1">
+                    FIRNAS CORE SERVICE
+                  </span>
+
+                  <h3 className="text-xl font-black text-white leading-tight drop-shadow-md">
                     {service.title}
                   </h3>
-                  <p className="text-xs text-[#94A3B8] leading-relaxed mb-4 line-clamp-3">
-                    {service.shortDesc}
-                  </p>
 
-                  {/* Verified Sub-Services Pills */}
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {service.subServices.slice(0, 3).map((sub) => (
-                      <span
-                        key={sub}
-                        className="text-[10px] px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.06] text-[#94A3B8]"
-                      >
-                        {sub}
-                      </span>
-                    ))}
-                    {service.subServices.length > 3 && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/[0.03] text-[#64748B]">
-                        +{service.subServices.length - 3} more
-                      </span>
-                    )}
+                  <div className="flex items-center gap-2 mt-4 text-xs font-mono text-[#00E599]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00E599] animate-ping" />
+                    <span>Hover / Tap to view details &rarr;</span>
                   </div>
                 </div>
 
-                {/* Learn More Interactive Trigger */}
-                <button
-                  onClick={() => setSelectedService(service)}
-                  className={`text-xs font-semibold inline-flex items-center gap-1 transition-all duration-300 pt-3 border-t border-white/[0.06] ${
-                    isBlue
-                      ? "text-[#00A3FF] hover:text-white"
-                      : "text-[#00E599] hover:text-white"
+                {/* 3. ACTIVE / HOVER STATE: Full Content Revealed */}
+                <div
+                  className={`absolute inset-0 p-6 z-20 flex flex-col justify-between transition-all duration-500 transform ${
+                    isActive
+                      ? "opacity-100 translate-y-0 pointer-events-auto"
+                      : "opacity-0 translate-y-6 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
                   }`}
                 >
-                  <span>Explore Capabilities</span>
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-                </button>
+                  <div>
+                    {/* Header with Icon and Title */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${
+                          isBlue
+                            ? "bg-[#0070F3]/20 border-[#0070F3]/40 text-[#00A3FF]"
+                            : "bg-[#00E599]/20 border-[#00E599]/40 text-[#00E599]"
+                        }`}
+                      >
+                        {renderIcon(service.iconType)}
+                      </div>
+                      <h3 className="text-base font-extrabold text-white leading-tight">
+                        {service.title}
+                      </h3>
+                    </div>
+
+                    {/* Service Description */}
+                    <p className="text-xs text-[#CBD5E1] leading-relaxed mb-4">
+                      {service.shortDesc}
+                    </p>
+
+                    {/* Sub-Services Matrix Pills */}
+                    <div className="mb-4">
+                      <div className="text-[10px] uppercase tracking-wider text-[#00E599] font-mono font-semibold mb-2">
+                        Key Capabilities:
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {service.subServices.map((sub) => (
+                          <span
+                            key={sub}
+                            className="text-[10px] px-2 py-1 rounded-md bg-white/[0.05] border border-white/[0.1] text-white/90 font-medium"
+                          >
+                            {sub}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Action Trigger */}
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedService(service);
+                      }}
+                      className={`text-xs font-bold inline-flex items-center gap-1.5 py-1.5 px-3 rounded-lg transition-all duration-300 ${
+                        isBlue
+                          ? "bg-[#0070F3] hover:bg-[#0055c4] text-white shadow-[0_0_15px_rgba(0,112,243,0.4)]"
+                          : "bg-[#00E599] hover:bg-[#00c985] text-[#05080F] shadow-[0_0_15px_rgba(0,229,153,0.4)]"
+                      }`}
+                    >
+                      <span>Explore Capabilities</span>
+                      <span>&rarr;</span>
+                    </button>
+                    <span className="text-[10px] font-mono text-[#64748B]">
+                      VERIFIED // 2026
+                    </span>
+                  </div>
+                </div>
               </div>
             );
           })}
         </div>
       </div>
+
 
       {/* Interactive Service Detail Modal */}
       {selectedService && (
