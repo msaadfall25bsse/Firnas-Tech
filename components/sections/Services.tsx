@@ -127,7 +127,7 @@ export default function Services() {
                     : "hover:border-[#00E599]/60 hover:shadow-[0_0_35px_rgba(0,229,153,0.25)]"
                 } ${isActive ? "border-[#00E599] ring-1 ring-[#00E599]/50" : ""}`}
               >
-                {/* 1. Tailored Futuristic Background Image */}
+                {/* 1. Tailored High-Resolution Background Image */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
                   <Image
                     src={bgImage}
@@ -137,15 +137,17 @@ export default function Services() {
                     className={`object-cover object-center transform transition-all duration-700 ease-out ${
                       isActive
                         ? "scale-110 opacity-15 filter blur-[2px]"
-                        : "scale-100 opacity-75 group-hover:scale-110 group-hover:opacity-15 group-hover:filter group-hover:blur-[2px]"
+                        : "scale-100 opacity-90 group-hover:scale-110 group-hover:opacity-15 group-hover:filter group-hover:blur-[2px]"
                     }`}
                     priority={index < 4}
                   />
-                  {/* Subtle Dark Vignette & Base Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080F] via-[#05080F]/70 to-[#05080F]/40" />
+                  {/* Subtle Gradient only on the lower 45% for crisp title readability, keeping the photo crystal clear */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080F] via-[#05080F]/85 via-45% to-transparent" />
+                  
+                  {/* Deep Dark Overlay when Active/Hovered so text pops */}
                   <div
-                    className={`absolute inset-0 bg-[#05080F] transition-opacity duration-500 ${
-                      isActive ? "opacity-85" : "opacity-0 group-hover:opacity-85"
+                    className={`absolute inset-0 bg-[#05080F]/90 backdrop-blur-[2px] transition-opacity duration-500 ${
+                      isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                     }`}
                   />
                 </div>
