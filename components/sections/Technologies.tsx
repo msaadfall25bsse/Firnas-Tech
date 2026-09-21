@@ -5,6 +5,8 @@ import Badge from "../ui/Badge";
 import Button from "../ui/Button";
 import { SITE_DATA } from "../../data/siteData";
 
+import TechIcon from "../brand/TechIcon";
+
 export default function Technologies() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
@@ -55,21 +57,22 @@ export default function Technologies() {
           })}
         </div>
 
-        {/* Connected Circuit Technology Nodes Grid */}
+        {/* Connected Circuit Technology Nodes Grid with Official Brand Logos */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 max-w-6xl mx-auto mb-16">
-          {displayedTechs.slice(0, 36).map(({ item, category }) => (
+          {displayedTechs.map(({ item, category }) => (
             <div
               key={`${category}-${item}`}
-              className="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group relative border-white/[0.07] hover:border-[#00E599]/40 hover:-translate-y-1 transition duration-300"
+              className="glass-card p-4 rounded-xl flex flex-col items-center justify-center text-center group relative border-white/[0.07] hover:border-[#00E599]/50 hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-[0_10px_25px_-5px_rgba(0,229,153,0.15)]"
             >
-              {/* Circuit Corner Dots */}
-              <span className="absolute top-1.5 right-1.5 w-1 h-1 rounded-full bg-[#00E599]/30 group-hover:bg-[#00E599]" />
-              
-              <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-xs font-mono text-[#00E599] mb-2 group-hover:bg-[#00E599]/10 group-hover:text-white transition">
-                &lt;/&gt;
+              {/* Circuit Corner Dot */}
+              <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-[#00E599]/25 group-hover:bg-[#00E599] transition-colors" />
+
+              {/* Official Framework / Technology Brand Logo */}
+              <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center mb-3 p-2 group-hover:bg-white/[0.08] group-hover:border-[#00E599]/40 group-hover:scale-110 transition-all duration-300 shadow-inner">
+                <TechIcon name={item} size={24} />
               </div>
 
-              <span className="text-xs font-bold text-white tracking-wide group-hover:text-[#00E599] transition-colors">
+              <span className="text-xs font-bold text-white tracking-wide group-hover:text-[#00E599] transition-colors line-clamp-1">
                 {item}
               </span>
               <span className="text-[10px] text-[#64748B] mt-0.5 font-mono">
