@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Badge from "../ui/Badge";
 import { SITE_DATA, GlobalOffice } from "../../data/siteData";
 
+import InteractiveGlobe from "../effects/InteractiveGlobe";
+
 export default function GlobalPresence() {
   const [activeOffice, setActiveOffice] = useState<GlobalOffice>(SITE_DATA.globalOffices[0]);
 
@@ -25,67 +27,33 @@ export default function GlobalPresence() {
 
         {/* Global Network Visual & Location Details */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left: Interactive Stylized Map / Radar Container */}
+          {/* Left: 3D Interactive Rotating Cyber Globe */}
           <div className="lg:col-span-7 relative">
-            <div className="glass-card p-6 sm:p-8 rounded-2xl relative min-h-[360px] flex items-center justify-center overflow-hidden border-white/10 bg-[#05080F]/80">
-              {/* World Map Circuit Background Lines */}
-              <div className="absolute inset-0 bg-grid-cyber opacity-40" />
-              <div className="absolute w-72 h-72 rounded-full border border-white/[0.05] animate-ping opacity-20 pointer-events-none" />
-              <div className="absolute w-96 h-96 rounded-full border border-[#00E599]/10 pointer-events-none" />
+            <div className="glass-card p-4 sm:p-6 rounded-3xl relative flex flex-col items-center justify-center overflow-hidden border-white/10 bg-[#05080F]/90 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+              {/* Ambient Grid Backdrop */}
+              <div className="absolute inset-0 bg-grid-cyber opacity-30 pointer-events-none" />
+              <div className="absolute -top-10 -left-10 w-64 h-64 bg-[#00E599]/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#0070F3]/10 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Connected Coordinate Points for the 5 Countries */}
-              <div className="relative w-full aspect-[16/9] max-w-xl mx-auto">
-                {/* Visual World Silhouette Guides */}
-                <svg className="w-full h-full opacity-30 fill-none stroke-[#64748B] stroke-1" viewBox="0 0 100 60">
-                  {/* Stylized continent arcs */}
-                  <path d="M15 20 Q 25 15 35 25 T 30 45" strokeDasharray="1 2" />
-                  <path d="M45 15 Q 55 12 60 22 T 55 35" strokeDasharray="1 2" />
-                  <path d="M60 25 Q 70 20 85 28 T 80 45" strokeDasharray="1 2" />
-                </svg>
-
-                {/* Office Interactive Pins */}
-                {SITE_DATA.globalOffices.map((office) => {
-                  const isSelected = activeOffice.id === office.id;
-                  return (
-                    <button
-                      key={office.id}
-                      onClick={() => setActiveOffice(office)}
-                      className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer focus:outline-none"
-                      style={{
-                        left: `${office.coordinates.x}%`,
-                        top: `${office.coordinates.y}%`,
-                      }}
-                      title={`${office.city}, ${office.country}`}
-                    >
-                      {/* Pulse Wave */}
-                      <span
-                        className={`absolute -inset-2 rounded-full animate-ping opacity-75 ${
-                          isSelected ? "bg-[#00E599]" : "bg-[#0070F3] group-hover:bg-[#00E599]"
-                        }`}
-                      />
-                      {/* Node Core */}
-                      <span
-                        className={`relative flex items-center justify-center w-5 h-5 rounded-full border-2 transition-all duration-300 ${
-                          isSelected
-                            ? "bg-[#00E599] border-white shadow-[0_0_15px_#00E599] scale-125"
-                            : "bg-[#05080F] border-[#00A3FF] group-hover:border-[#00E599]"
-                        }`}
-                      >
-                        <span
-                          className={`w-1.5 h-1.5 rounded-full ${
-                            isSelected ? "bg-[#05080F]" : "bg-[#00A3FF]"
-                          }`}
-                        />
-                      </span>
-
-                      {/* Tooltip Label */}
-                      <span className="absolute left-1/2 -translate-x-1/2 top-6 text-[10px] font-mono px-2 py-0.5 rounded bg-black/90 border border-white/10 text-white whitespace-nowrap opacity-90 group-hover:opacity-100">
-                        {office.country}
-                      </span>
-                    </button>
-                  );
-                })}
+              {/* Header Telemetry */}
+              <div className="w-full flex items-center justify-between px-2 sm:px-4 py-2 border-b border-white/[0.08] mb-2 z-20">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#00E599] animate-ping" />
+                  <span className="text-[11px] font-mono tracking-widest text-[#00E599] uppercase">
+                    EARTH_3D_SURFACE // ORBITAL_ROTATION
+                  </span>
+                </div>
+                <div className="text-[10px] font-mono text-[#64748B]">
+                  ACTIVE_HUBS: 5
+                </div>
               </div>
+
+              {/* 3D Rotating Earth Sphere with 5 Geographic Beacons */}
+              <InteractiveGlobe
+                offices={SITE_DATA.globalOffices}
+                activeOffice={activeOffice}
+                onSelectOffice={setActiveOffice}
+              />
             </div>
           </div>
 

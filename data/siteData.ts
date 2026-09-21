@@ -25,7 +25,9 @@ export interface GlobalOffice {
   city: string;
   type: "Global Delivery Center" | "Regional Office";
   address: string;
-  coordinates: { x: number; y: number }; // Percentage for world map placement
+  coordinates: { x: number; y: number }; // Percentage for flat maps
+  lat: number;
+  lng: number;
 }
 
 export interface TestimonialItem {
@@ -283,6 +285,8 @@ export const SITE_DATA = {
       type: "Global Delivery Center",
       address: "Firnas.tech, Javeed Shaheed Road, Near COMSATS, Abbottabad",
       coordinates: { x: 67, y: 38 },
+      lat: 34.1688,
+      lng: 73.2215,
     },
     {
       id: "us",
@@ -291,6 +295,8 @@ export const SITE_DATA = {
       type: "Regional Office",
       address: "400 Capitol Mall, Sacramento, California, USA",
       coordinates: { x: 20, y: 36 },
+      lat: 38.5816,
+      lng: -121.4944,
     },
     {
       id: "uk",
@@ -299,6 +305,8 @@ export const SITE_DATA = {
       type: "Regional Office",
       address: "260 Bastable Avenue, Barking, London, UK",
       coordinates: { x: 48, y: 26 },
+      lat: 51.5074,
+      lng: -0.1278,
     },
     {
       id: "se",
@@ -307,6 +315,8 @@ export const SITE_DATA = {
       type: "Regional Office",
       address: "Malmvägen 2B, 19161 Sollentuna, Stockholm, Sweden",
       coordinates: { x: 53, y: 20 },
+      lat: 59.3293,
+      lng: 18.0686,
     },
     {
       id: "ae",
@@ -315,6 +325,8 @@ export const SITE_DATA = {
       type: "Regional Office",
       address: "Business Centre, Sharjah Publishing City Free Zone, Sharjah, UAE",
       coordinates: { x: 63, y: 44 },
+      lat: 25.3463,
+      lng: 55.4209,
     },
   ] as GlobalOffice[],
   engagementModels: [
