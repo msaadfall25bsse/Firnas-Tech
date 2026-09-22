@@ -19,11 +19,14 @@ export default function Hero() {
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover object-center opacity-45 sm:opacity-55 filter brightness-110 contrast-110"
+          className="w-full h-full object-cover object-center opacity-65 sm:opacity-75 filter brightness-115 contrast-110"
         />
-        {/* Futuristic Contrast Gradient & Vignette for Maximum Text Legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#05080F]/85 via-[#05080F]/60 to-[#05080F]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#05080F_85%)] opacity-80" />
+        {/* Responsive Video Fade Mask:
+            Desktop: Right side clear & prominent -> Left side smooth fade out
+            Mobile: Top side clear & prominent -> Bottom side smooth fade out
+        */}
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#05080F]/40 via-50% to-[#05080F]/90 hidden md:block" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#05080F]/95 via-[#05080F]/40 to-transparent md:hidden" />
       </div>
 
       {/* 2. Integrated Anti-Gravity Multi-Depth Physics Canvas */}

@@ -39,15 +39,18 @@ export default function PageHero({
           muted
           playsInline
           poster={posterSrc}
-          className="w-full h-full object-cover object-center opacity-35 filter brightness-110 contrast-125 transition-opacity duration-1000"
+          className="w-full h-full object-cover object-center opacity-70 sm:opacity-75 filter brightness-115 contrast-125 transition-opacity duration-1000"
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
 
-        {/* Ambient Dark Vignette Overlays for 100% Crisp Legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#05080F] via-[#05080F]/70 via-40% to-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#05080F]/90 via-transparent to-[#05080F]/90" />
-        <div className="absolute inset-0 bg-grid-cyber opacity-25" />
+        {/* Responsive Video Fade Mask:
+            Desktop: Right side clear/visible -> Left side smooth fade out
+            Mobile: Top side clear/visible -> Bottom side smooth fade out
+        */}
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#05080F]/45 via-45% to-[#05080F]/90 hidden md:block" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#05080F]/95 via-[#05080F]/50 to-transparent md:hidden" />
+        <div className="absolute inset-0 bg-grid-cyber opacity-20" />
       </div>
 
       {/* Ambient Lighting Orbs */}
