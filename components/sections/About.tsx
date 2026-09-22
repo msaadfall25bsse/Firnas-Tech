@@ -27,7 +27,7 @@ export default function About() {
             </h2>
 
             <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
-              Firnas.tech is a leading IT service provider dedicated to helping companies transform and expand their digital capabilities. With a team of over 60 skilled professionals across 5 countries, we design and implement robust digital infrastructure that empowers our clients to excel in fast-changing environments.
+              Firnas.tech is a leading IT service provider dedicated to helping companies transform and expand their digital capabilities. With a team of over 60 skilled professionals across 4 countries, we design and implement robust digital infrastructure that empowers our clients to excel in fast-changing environments.
             </p>
 
             <p className="text-sm text-[#64748B] leading-relaxed">
@@ -76,7 +76,7 @@ export default function About() {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-[#94A3B8]">5 REGIONS</span>
+                  <span className="text-[10px] font-mono text-[#94A3B8]">4 REGIONS</span>
                   <Badge variant="emerald" size="sm">Active</Badge>
                 </div>
               </div>
@@ -109,10 +109,10 @@ export default function About() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div className="p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] text-center hover:border-[#00E599]/30 transition">
                   <div className="text-2xl sm:text-3xl font-black text-white mb-0.5">
-                    5<span className="text-[#00E599]"></span>
+                    4<span className="text-[#00E599]"></span>
                   </div>
                   <div className="text-[11px] text-[#94A3B8] font-medium">Countries</div>
-                  <div className="text-[9px] text-[#64748B] mt-0.5 font-mono">USA, UK, UAE, SE, PK</div>
+                  <div className="text-[9px] text-[#64748B] mt-0.5 font-mono">UK, UAE, SE, PK</div>
                 </div>
 
                 <div className="p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] text-center hover:border-[#0070F3]/30 transition">

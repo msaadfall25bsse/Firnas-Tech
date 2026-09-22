@@ -6,7 +6,7 @@ export default function Careers() {
   const perks = [
     {
       title: "Global Projects & Tech Stacks",
-      desc: "Work on enterprise systems, AI/LLM applications, and modern cloud architectures for international clients in the USA, UK, UAE, and Europe.",
+      desc: "Work on enterprise systems, AI/LLM applications, and modern cloud architectures for international clients in the UK, UAE, and Europe.",
     },
     {
       title: "Engineering Autonomy",

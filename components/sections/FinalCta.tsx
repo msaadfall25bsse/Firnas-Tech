@@ -28,7 +28,7 @@ export default function FinalCta() {
         </h2>
 
         <p className="text-base sm:text-lg text-[#94A3B8] max-w-2xl mx-auto leading-relaxed mb-10">
-          Whether you need a full-scale digital transformation, an AI integration, or an elite dedicated developer squad, our teams in the USA, UK, UAE, Sweden, and Pakistan are ready to build.
+          Whether you need a full-scale digital transformation, an AI integration, or an elite dedicated developer squad, our teams in the UK, UAE, Sweden, and Pakistan are ready to build.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-5">

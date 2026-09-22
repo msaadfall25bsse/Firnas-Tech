@@ -21,7 +21,7 @@ export default function GlobalPresence() {
             A Global Team of <span className="text-gradient-emerald">Innovators</span>.
           </h2>
           <p className="text-base text-[#94A3B8] leading-relaxed">
-            Navigate complex digital initiatives with confidence, backed by regional presence across 5 countries and a 24/7 delivery cycle.
+            Navigate complex digital initiatives with confidence, backed by regional presence across 4 countries and a 24/7 delivery cycle.
           </p>
         </div>
 
@@ -44,11 +44,11 @@ export default function GlobalPresence() {
                   </span>
                 </div>
                 <div className="text-[10px] font-mono text-[#64748B]">
-                  ACTIVE_HUBS: 5
+                  ACTIVE_HUBS: 4
                 </div>
               </div>
 
-              {/* 3D Rotating Earth Sphere with 5 Geographic Beacons */}
+              {/* 3D Rotating Earth Sphere with 4 Geographic Beacons */}
               <InteractiveGlobe
                 offices={SITE_DATA.globalOffices}
                 activeOffice={activeOffice}

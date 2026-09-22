@@ -19,7 +19,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-2 text-xs text-[#64748B]">
               <span className="w-2 h-2 rounded-full bg-[#00E599] animate-pulse" />
-              <span>Global Delivery Centers: Active across 5 Countries</span>
+              <span>Global Delivery Centers: Active across 4 Countries</span>
             </div>
             {/* Social Links */}
             <div className="flex items-center gap-3 pt-2">
@@ -132,8 +132,6 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <span>Abbottabad, PK</span>
-            <span>&bull;</span>
-            <span>Sacramento, USA</span>
             <span>&bull;</span>
             <span>London, UK</span>
             <span>&bull;</span>

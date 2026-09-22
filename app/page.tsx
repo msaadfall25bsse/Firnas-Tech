@@ -47,7 +47,7 @@ export default function Home() {
         {/* 6. Technologies Ecosystem (13 Categories) */}
         <Technologies />
 
-        {/* 7. Global Delivery Network (5 Countries) */}
+        {/* 7. Global Delivery Network (4 Countries) */}
         <GlobalPresence />
 
         {/* 8. Engagement Models */}
