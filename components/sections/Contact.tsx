@@ -57,21 +57,32 @@ export default function Contact() {
           {/* Left Column: Real Contact Info & Office Addresses */}
           <div className="lg:col-span-5 flex flex-col gap-8 scroll-reveal-left">
             {/* Quick Contact Cards */}
-            <div className="glass-card p-6 border-white/10 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#00E599]/10 text-[#00E599] flex items-center justify-center shrink-0">
-                <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
+            <div className="glass-card p-6 border-white/10 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#00E599]/10 text-[#00E599] flex items-center justify-center shrink-0">
+                  <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-xs text-[#64748B] uppercase font-mono">Direct Phone Call</div>
+                  <a
+                    href={`tel:${SITE_DATA.contact.phone.replace(/\s+/g, "")}`}
+                    className="text-base font-bold text-white hover:text-[#00E599] transition font-mono focus:outline-none focus:text-[#00E599]"
+                  >
+                    {SITE_DATA.contact.phone}
+                  </a>
+                </div>
               </div>
-              <div>
-                <div className="text-xs text-[#64748B] uppercase font-mono">Direct Phone Call</div>
-                <a
-                  href={`tel:${SITE_DATA.contact.phone.replace(/\s+/g, "")}`}
-                  className="text-base font-bold text-white hover:text-[#00E599] transition font-mono focus:outline-none focus:text-[#00E599]"
-                >
-                  {SITE_DATA.contact.phone}
-                </a>
-              </div>
+              <a
+                href={`https://wa.me/${SITE_DATA.contact.phone.replace(/[^0-9]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3.5 py-2 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#25D366] font-bold text-xs flex items-center gap-1.5 transition shadow-lg shrink-0"
+              >
+                <span>WhatsApp</span>
+                <span className="text-sm">💬</span>
+              </a>
             </div>
 
             <div className="glass-card p-6 border-white/10 flex items-center gap-4">

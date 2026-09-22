@@ -6,9 +6,9 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Portfolio & Case Studies | FIRNAS.TECH — Our Success Stories",
+  title: "Featured Projects | FIRNAS.TECH — Our Software Engineering Portfolio",
   description:
-    "Discover how FIRNAS.TECH transformed luxury retail, vehicle security, real estate, and limousine services with high-impact software solutions.",
+    "Explore our delivered enterprise projects across luxury e-commerce, IoT vehicle security, PropTech real estate, and executive chauffeur logistics.",
 };
 
 const CASE_STUDIES = [

@@ -1,8 +1,13 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
+import DeveloperApplyModal from "../modals/DeveloperApplyModal";
 
 export default function Careers() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const perks = [
     {
       title: "Global Projects & Tech Stacks",
@@ -23,34 +28,51 @@ export default function Careers() {
   ];
 
   return (
-    <section id="careers" className="relative py-28 bg-[#05080F] border-t border-white/[0.06] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Narrative & CTA */}
-          <div className="lg:col-span-6 flex flex-col gap-6 scroll-reveal-left">
-            <div className="inline-flex">
-              <Badge variant="emerald" dot size="sm">
-                Join the Flight
-              </Badge>
+    <>
+      <DeveloperApplyModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        developerEmail="msaadbsse296@gmail.com"
+      />
+
+      <section id="careers" className="relative py-28 bg-[#05080F] border-t border-white/[0.06] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left Column: Narrative & CTA */}
+            <div className="lg:col-span-6 flex flex-col gap-6 scroll-reveal-left">
+              <div className="inline-flex">
+                <Badge variant="emerald" dot size="sm">
+                  Join the Flight
+                </Badge>
+              </div>
+
+              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+                Innovate with the <span className="text-gradient-emerald">Latest Technologies</span> on Coolest Projects.
+              </h2>
+
+              <p className="text-base text-[#94A3B8] leading-relaxed">
+                We are constantly scouting exceptional talent in Full-Stack Web Development, Mobile Engineering, AI/Machine Learning, UI/UX Design, and Software Quality Assurance.
+              </p>
+
+              <div className="pt-2 flex flex-wrap items-center gap-4">
+                <Button
+                  type="button"
+                  variant="primary-emerald"
+                  size="lg"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Apply as a Developer
+                </Button>
+                <Button
+                  type="button"
+                  variant="glass-outline"
+                  size="lg"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Explore Open Roles
+                </Button>
+              </div>
             </div>
-
-            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-              Innovate with the <span className="text-gradient-emerald">Latest Technologies</span> on Coolest Projects.
-            </h2>
-
-            <p className="text-base text-[#94A3B8] leading-relaxed">
-              We are constantly scouting exceptional talent in Full-Stack Web Development, Mobile Engineering, AI/Machine Learning, UI/UX Design, and Software Quality Assurance.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <Button href="#contact" variant="primary-emerald" size="lg">
-                Apply as a Developer
-              </Button>
-              <Button href="#contact" variant="glass-outline" size="lg">
-                Explore Open Roles
-              </Button>
-            </div>
-          </div>
 
           {/* Right Column: Perks Grid */}
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -74,7 +96,7 @@ export default function Careers() {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
