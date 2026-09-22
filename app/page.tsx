@@ -1,85 +1,67 @@
 import React from "react";
-import Navbar from "../components/layout/Navbar";
-import Hero from "../components/sections/Hero";
-import About from "../components/sections/About";
-import Services from "../components/sections/Services";
-import Industries from "../components/sections/Industries";
-import Technologies from "../components/sections/Technologies";
-import GlobalPresence from "../components/sections/GlobalPresence";
-import EngagementModels from "../components/sections/EngagementModels";
-import TalentNetwork from "../components/sections/TalentNetwork";
-import HiringProcess from "../components/sections/HiringProcess";
-import ProductProcess from "../components/sections/ProductProcess";
-import Testimonials from "../components/sections/Testimonials";
-import NewsEvents from "../components/sections/NewsEvents";
-import Careers from "../components/sections/Careers";
-import FinalCta from "../components/sections/FinalCta";
-import Contact from "../components/sections/Contact";
-import Footer from "../components/layout/Footer";
-import ScrollProgressBar from "../components/effects/ScrollProgressBar";
-import ScrollObserver from "../components/effects/ScrollObserver";
-import ScrollToTop from "../components/effects/ScrollToTop";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Services from "@/components/sections/Services";
+import Industries from "@/components/sections/Industries";
+import Technologies from "@/components/sections/Technologies";
+import GlobalPresence from "@/components/sections/GlobalPresence";
+import EngagementModels from "@/components/sections/EngagementModels";
+import TalentNetwork from "@/components/sections/TalentNetwork";
+import HiringProcess from "@/components/sections/HiringProcess";
+import ProductProcess from "@/components/sections/ProductProcess";
+import Testimonials from "@/components/sections/Testimonials";
+import NewsEvents from "@/components/sections/NewsEvents";
+import Careers from "@/components/sections/Careers";
+import FinalCta from "@/components/sections/FinalCta";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#05080F] text-[#F8FAFC]">
-      {/* 0. Cyber Scroll Progress Tracker & Observers */}
-      <ScrollProgressBar />
-      <ScrollObserver />
-      <ScrollToTop />
+    <main className="flex-1">
+      {/* 1. Full Hero Section with 3D Circuit Video Background */}
+      <Hero />
 
-      {/* 1. Sticky/Fixed Navbar */}
-      <Navbar />
+      {/* 2. About IRNAS.TECH Section */}
+      <About />
 
-      <main className="flex-1">
-        {/* 2. Anti-Gravity Hero Section */}
-        <Hero />
+      {/* 3. Core Services (8 Categories with 30s Auto-Reset Flip Cards) */}
+      <Services />
 
-        {/* 3. About IRNAS.TECH Section */}
-        <About />
+      {/* 4. Industries Explorer (9 Verticals) */}
+      <Industries />
 
-        {/* 4. Core Services (8 Categories) */}
-        <Services />
+      {/* 5. Technologies Ecosystem (13 Framework Categories) */}
+      <Technologies />
 
-        {/* 5. Industries Explorer (9 Verticals) */}
-        <Industries />
+      {/* 6. Global Delivery Network (4 Registered Countries) */}
+      <GlobalPresence />
 
-        {/* 6. Technologies Ecosystem (13 Categories) */}
-        <Technologies />
+      {/* 7. Engagement Models */}
+      <EngagementModels />
 
-        {/* 7. Global Delivery Network (4 Countries) */}
-        <GlobalPresence />
+      {/* 8. Pre-Vetted Talent Network */}
+      <TalentNetwork />
 
-        {/* 8. Engagement Models */}
-        <EngagementModels />
+      {/* 9. 3-Step Hiring Process */}
+      <HiringProcess />
 
-        {/* 9. Pre-Vetted Talent Network */}
-        <TalentNetwork />
+      {/* 10. 6-Stage Product Development Process */}
+      <ProductProcess />
 
-        {/* 10. 3-Step Hiring Process */}
-        <HiringProcess />
+      {/* 11. Verified Client Testimonials */}
+      <Testimonials />
 
-        {/* 11. 6-Stage Product Development Process */}
-        <ProductProcess />
+      {/* 12. Latest News & Academic MOUs */}
+      <NewsEvents />
 
-        {/* 12. Verified Client Testimonials */}
-        <Testimonials />
+      {/* 13. Careers & Culture */}
+      <Careers />
 
-        {/* 13. Latest News & Academic MOUs */}
-        <NewsEvents />
+      {/* 14. Final Impact CTA */}
+      <FinalCta />
 
-        {/* 14. Careers & Culture */}
-        <Careers />
-
-        {/* 15. Final Impact CTA */}
-        <FinalCta />
-
-        {/* 16. Contact & Technical Discovery */}
-        <Contact />
-      </main>
-
-      {/* 17. Multi-Column Footer */}
-      <Footer />
-    </div>
+      {/* 15. Contact & Technical Discovery */}
+      <Contact />
+    </main>
   );
 }

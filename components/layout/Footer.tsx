@@ -65,14 +65,14 @@ export default function Footer() {
             <ul className="flex flex-col gap-2 text-sm text-[#94A3B8]">
               {SITE_DATA.services.slice(0, 5).map((service) => (
                 <li key={service.id}>
-                  <Link href="#services" className="hover:text-[#00E599] transition-colors">
+                  <Link href="/services" className="hover:text-[#00E599] transition-colors">
                     {service.title}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="#services" className="text-[#0070F3] hover:text-[#00E599] transition-colors">
-                  View All 8 Services &rarr;
+                <Link href="/services" className="text-[#0070F3] hover:text-[#00E599] transition-colors font-medium">
+                  View All Services &rarr;
                 </Link>
               </li>
             </ul>
@@ -80,45 +80,50 @@ export default function Footer() {
 
           {/* Col 3: Industries */}
           <div className="flex flex-col gap-3">
-            <h4 className="text-xs uppercase tracking-wider font-semibold text-white">Industries</h4>
+            <h4 className="text-xs uppercase tracking-wider font-semibold text-white font-mono">Domains</h4>
             <ul className="flex flex-col gap-2 text-sm text-[#94A3B8]">
-              {SITE_DATA.industries.slice(0, 6).map((ind) => (
+              {SITE_DATA.industries.slice(0, 5).map((ind) => (
                 <li key={ind.id}>
-                  <Link href="#industries" className="hover:text-[#00E599] transition-colors">
+                  <Link href="/industries" className="hover:text-[#00E599] transition-colors">
                     {ind.name}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/technologies" className="text-[#00E599] hover:underline font-mono text-xs">
+                  Tech Ecosystem &rarr;
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Col 4: Company & Links */}
+          {/* Col 4: Navigation Links */}
           <div className="flex flex-col gap-3">
-            <h4 className="text-xs uppercase tracking-wider font-semibold text-white">Company</h4>
+            <h4 className="text-xs uppercase tracking-wider font-semibold text-white font-mono">Navigation</h4>
             <ul className="flex flex-col gap-2 text-sm text-[#94A3B8]">
               <li>
-                <Link href="#about" className="hover:text-[#00E599] transition-colors">
-                  About IRNAS.TECH
+                <Link href="/about" className="hover:text-[#00E599] transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href="#process" className="hover:text-[#00E599] transition-colors">
-                  Development Process
+                <Link href="/services" className="hover:text-[#00E599] transition-colors">
+                  Core Services
                 </Link>
               </li>
               <li>
-                <Link href="#talent" className="hover:text-[#00E599] transition-colors">
-                  Talent Network
+                <Link href="/portfolio" className="hover:text-[#00E599] transition-colors">
+                  Case Studies
                 </Link>
               </li>
               <li>
-                <Link href="#careers" className="hover:text-[#00E599] transition-colors">
-                  Careers & Hiring
+                <Link href="/talent" className="hover:text-[#00E599] transition-colors">
+                  Talent &amp; Careers
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:text-[#00E599] transition-colors">
-                  Contact & Support
+                <Link href="/contact" className="hover:text-[#00E599] transition-colors">
+                  Contact &amp; Support
                 </Link>
               </li>
             </ul>

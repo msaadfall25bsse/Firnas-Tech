@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import ScrollProgressBar from "@/components/effects/ScrollProgressBar";
+import ScrollObserver from "@/components/effects/ScrollObserver";
+import ScrollToTop from "@/components/effects/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,10 +44,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-[#05080F] text-[#F8FAFC] antialiased selection:bg-[#00E599]/30 selection:text-white">
-        {children}
+        {/* Global Scroll Progress Tracker & Observers */}
+        <ScrollProgressBar />
+        <ScrollObserver />
+        <ScrollToTop />
+
+        {/* Global Navigation Header */}
+        <Navbar />
+
+        {/* Page Content */}
+        <div className="flex-1">{children}</div>
+
+        {/* Global Multi-Column Footer */}
+        <Footer />
       </body>
     </html>
   );
