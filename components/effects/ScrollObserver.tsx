@@ -10,7 +10,10 @@ export default function ScrollObserver() {
         .querySelectorAll(
           ".scroll-reveal, .scroll-reveal-scale, .scroll-reveal-left, .scroll-reveal-right"
         )
-        .forEach((el) => el.classList.add("is-visible"));
+        .forEach((el) => {
+          el.classList.add("is-visible");
+          el.setAttribute("data-revealed", "true");
+        });
       return;
     }
 
@@ -19,6 +22,7 @@ export default function ScrollObserver() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
+            entry.target.setAttribute("data-revealed", "true");
             observer.unobserve(entry.target);
           }
         });
@@ -49,7 +53,10 @@ export default function ScrollObserver() {
         .querySelectorAll(
           ".scroll-reveal:not(.is-visible), .scroll-reveal-scale:not(.is-visible), .scroll-reveal-left:not(.is-visible), .scroll-reveal-right:not(.is-visible)"
         )
-        .forEach((el) => el.classList.add("is-visible"));
+        .forEach((el) => {
+          el.classList.add("is-visible");
+          el.setAttribute("data-revealed", "true");
+        });
     }, 3000);
 
     // Watch for dynamic DOM changes (e.g. tab switches, accordions)

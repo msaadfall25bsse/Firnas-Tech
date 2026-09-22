@@ -22,11 +22,43 @@ const SERVICE_IMAGES: Record<string, string> = {
 export default function Services() {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  // Toggle active card for touch/mobile devices
-  const handleCardClick = (service: ServiceItem) => {
-    setActiveCardId((prev) => (prev === service.id ? null : service.id));
+  // Toggle card state: when clicked, image goes to background and content comes to top
+  // If clicked again, image comes back. Or auto-reverts after exactly 30 seconds!
+  const handleCardClick = (serviceId: string) => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+
+    if (activeCardId === serviceId) {
+      // Content / card clicked while active -> return image to front
+      setActiveCardId(null);
+    } else {
+      // Open card -> reveal content and start 30s auto-revert timer
+      setActiveCardId(serviceId);
+      timerRef.current = setTimeout(() => {
+        setActiveCardId((current) => (current === serviceId ? null : current));
+      }, 30000); // 30 seconds auto-revert
+    }
   };
+
+  const handleCloseCard = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    setActiveCardId(null);
+  };
+
+  // Cleanup timer on unmount
+  React.useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   // Custom SVG Icons for each service type
   const renderIcon = (type: ServiceItem["iconType"]) => {
@@ -98,7 +130,7 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+        <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal" data-revealed="true">
           <Badge variant="emerald" dot size="sm" className="mb-4">
             Our Core Offerings
           </Badge>
@@ -121,13 +153,32 @@ export default function Services() {
             return (
               <div
                 key={service.id}
-                onClick={() => handleCardClick(service)}
-                className={`relative min-h-[410px] rounded-3xl overflow-hidden glass-card border border-white/[0.09] transition-all duration-500 cursor-pointer group select-none shadow-xl scroll-reveal ${staggerClass} ${
+                data-revealed="true"
+                onClick={() => handleCardClick(service.id)}
+                className={`relative min-h-[440px] sm:min-h-[430px] rounded-3xl overflow-hidden glass-card border transition-all duration-500 cursor-pointer select-none shadow-xl scroll-reveal ${staggerClass} ${
                   isBlue
                     ? "hover:border-[#0070F3]/60 hover:shadow-[0_0_35px_rgba(0,112,243,0.25)]"
                     : "hover:border-[#00E599]/60 hover:shadow-[0_0_35px_rgba(0,229,153,0.25)]"
-                } ${isActive ? "border-[#00E599] ring-1 ring-[#00E599]/50" : ""}`}
+                } ${
+                  isActive
+                    ? isBlue
+                      ? "border-[#0070F3] ring-1 ring-[#0070F3]/50 shadow-[0_0_35px_rgba(0,112,243,0.3)]"
+                      : "border-[#00E599] ring-1 ring-[#00E599]/50 shadow-[0_0_35px_rgba(0,229,153,0.3)]"
+                    : "border-white/[0.09]"
+                }`}
+                style={{ touchAction: "manipulation" }}
               >
+                {/* 30-Second Countdown Progress Bar when Active */}
+                {isActive && (
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-white/10 z-30 overflow-hidden">
+                    <div
+                      className={`h-full ${
+                        isBlue ? "bg-[#0070F3]" : "bg-[#00E599]"
+                      } animate-timer-30s shadow-[0_0_10px_currentColor]`}
+                    />
+                  </div>
+                )}
+
                 {/* 1. Tailored High-Resolution Background Image */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
                   <Image
@@ -137,38 +188,54 @@ export default function Services() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className={`object-cover object-center transform transition-all duration-700 ease-out ${
                       isActive
-                        ? "scale-110 opacity-15 filter blur-[2px]"
-                        : "scale-100 opacity-90 group-hover:scale-110 group-hover:opacity-15 group-hover:filter group-hover:blur-[2px]"
+                        ? "scale-110 opacity-20 filter blur-[3px]"
+                        : "scale-100 opacity-95 group-hover:scale-105"
                     }`}
                     priority={index < 4}
                   />
-                  {/* Subtle Gradient only on the lower 45% for crisp title readability, keeping the photo crystal clear */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080F] via-[#05080F]/85 via-45% to-transparent" />
-                  
-                  {/* Deep Dark Overlay when Active/Hovered so text pops */}
+
+                  {/* Subtle Gradient for Bottom Idle Text Readability */}
                   <div
-                    className={`absolute inset-0 bg-[#05080F]/90 backdrop-blur-[2px] transition-opacity duration-500 ${
-                      isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                    className={`absolute inset-0 bg-gradient-to-t from-[#05080F] via-[#05080F]/80 via-45% to-transparent transition-opacity duration-500 ${
+                      isActive ? "opacity-0" : "opacity-100"
+                    }`}
+                  />
+
+                  {/* Deep Glass Overlay when Active so Content Pops */}
+                  <div
+                    className={`absolute inset-0 bg-[#05080F]/92 backdrop-blur-md transition-opacity duration-500 ${
+                      isActive ? "opacity-100" : "opacity-0"
                     }`}
                   />
                 </div>
 
-                {/* Top Corner Badge: Service Number */}
-                <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
-                  <span
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      isBlue ? "bg-[#0070F3]" : "bg-[#00E599]"
-                    } animate-pulse`}
-                  />
-                  <span className="text-[11px] font-mono text-white/80">0{index + 1}</span>
-                </div>
+                {/* Top Corner: Service Number or Return to Image Button */}
+                {isActive ? (
+                  <button
+                    onClick={handleCloseCard}
+                    className="absolute top-4 right-4 z-30 flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white/90 text-xs font-mono border border-white/15 backdrop-blur-md transition-all duration-200 shadow-md active:scale-95"
+                    title="Click to return to image preview"
+                  >
+                    <span>Image</span>
+                    <span>✕</span>
+                  </button>
+                ) : (
+                  <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        isBlue ? "bg-[#0070F3]" : "bg-[#00E599]"
+                      } animate-pulse`}
+                    />
+                    <span className="text-[11px] font-mono text-white/80">0{index + 1}</span>
+                  </div>
+                )}
 
-                {/* 2. IDLE STATE: Main Heading at the Bottom */}
+                {/* 2. IDLE STATE: Image on Front with Title at the Bottom */}
                 <div
                   className={`absolute inset-x-0 bottom-0 p-6 z-10 flex flex-col justify-end transition-all duration-500 transform ${
                     isActive
                       ? "opacity-0 translate-y-4 pointer-events-none"
-                      : "opacity-100 translate-y-0 group-hover:opacity-0 group-hover:translate-y-4 group-hover:pointer-events-none"
+                      : "opacity-100 translate-y-0 pointer-events-auto"
                   }`}
                 >
                   <div
@@ -185,27 +252,28 @@ export default function Services() {
                     FIRNAS CORE SERVICE
                   </span>
 
-                  <h3 className="text-xl font-black text-white leading-tight drop-shadow-md">
+                  <h3 className="text-xl font-black text-white leading-tight drop-shadow-md mb-2">
                     {service.title}
                   </h3>
 
-                  <div className="flex items-center gap-2 mt-4 text-xs font-mono text-[#00E599]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#00E599] animate-ping" />
-                    <span>Hover / Tap to view details &rarr;</span>
+                  <div className="flex items-center gap-2 text-xs font-mono text-[#00E599] font-medium pt-1">
+                    <span className="w-2 h-2 rounded-full bg-[#00E599] animate-ping" />
+                    <span>Click / Tap to view details &rarr;</span>
                   </div>
                 </div>
 
-                {/* 3. ACTIVE / HOVER STATE: Full Content Revealed */}
+                {/* 3. ACTIVE STATE: Content on Front, Image in Background */}
+                {/* Clicking anywhere on the active card body returns image back */}
                 <div
                   className={`absolute inset-0 p-6 z-20 flex flex-col justify-between transition-all duration-500 transform ${
                     isActive
                       ? "opacity-100 translate-y-0 pointer-events-auto"
-                      : "opacity-0 translate-y-6 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto"
+                      : "opacity-0 translate-y-6 pointer-events-none"
                   }`}
                 >
                   <div>
                     {/* Header with Icon and Title */}
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex items-center gap-3 mb-3 pr-20">
                       <div
                         className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${
                           isBlue
@@ -226,7 +294,7 @@ export default function Services() {
                     </p>
 
                     {/* Sub-Services Matrix Pills */}
-                    <div className="mb-4">
+                    <div className="mb-3">
                       <div className="text-[10px] uppercase tracking-wider text-[#00E599] font-mono font-semibold mb-2">
                         Key Capabilities:
                       </div>
@@ -234,7 +302,7 @@ export default function Services() {
                         {service.subServices.map((sub) => (
                           <span
                             key={sub}
-                            className="text-[10px] px-2 py-1 rounded-md bg-white/[0.05] border border-white/[0.1] text-white/90 font-medium"
+                            className="text-[10px] px-2 py-1 rounded-md bg-white/[0.06] border border-white/[0.1] text-white/90 font-medium"
                           >
                             {sub}
                           </span>
@@ -243,25 +311,33 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Bottom Action Trigger */}
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedService(service);
-                      }}
-                      className={`text-xs font-bold inline-flex items-center gap-1.5 py-1.5 px-3 rounded-lg transition-all duration-300 ${
-                        isBlue
-                          ? "bg-[#0070F3] hover:bg-[#0055c4] text-white shadow-[0_0_15px_rgba(0,112,243,0.4)]"
-                          : "bg-[#00E599] hover:bg-[#00c985] text-[#05080F] shadow-[0_0_15px_rgba(0,229,153,0.4)]"
-                      }`}
-                    >
-                      <span>Explore Capabilities</span>
-                      <span>&rarr;</span>
-                    </button>
-                    <span className="text-[10px] font-mono text-[#64748B]">
-                      VERIFIED // 2026
-                    </span>
+                  {/* Bottom Action Footer & Return Hint */}
+                  <div>
+                    <div className="text-[10px] font-mono text-[#64748B] flex items-center justify-between mb-2">
+                      <span>Click card to return &uarr;</span>
+                      <span className="text-[#00E599]/80 font-mono text-[9px]">Auto-resets 30s</span>
+                    </div>
+
+                    <div className="pt-2.5 border-t border-white/10 flex items-center justify-between">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedService(service);
+                        }}
+                        className={`text-xs font-bold inline-flex items-center gap-1.5 py-2 px-3.5 rounded-lg transition-all duration-300 active:scale-95 ${
+                          isBlue
+                            ? "bg-[#0070F3] hover:bg-[#0055c4] text-white shadow-[0_0_15px_rgba(0,112,243,0.4)]"
+                            : "bg-[#00E599] hover:bg-[#00c985] text-[#05080F] shadow-[0_0_15px_rgba(0,229,153,0.4)]"
+                        }`}
+                      >
+                        <span>Explore Capabilities</span>
+                        <span>&rarr;</span>
+                      </button>
+
+                      <span className="text-[10px] font-mono text-[#64748B]">
+                        VERIFIED // 2026
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

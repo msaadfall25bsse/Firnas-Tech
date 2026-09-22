@@ -347,7 +347,12 @@ body {
 .scroll-reveal.is-visible,
 .scroll-reveal-scale.is-visible,
 .scroll-reveal-left.is-visible,
-.scroll-reveal-right.is-visible {
+.scroll-reveal-right.is-visible,
+.scroll-reveal[data-revealed="true"],
+.scroll-reveal-scale[data-revealed="true"],
+.scroll-reveal-left[data-revealed="true"],
+.scroll-reveal-right[data-revealed="true"],
+[data-revealed="true"] {
   opacity: 1 !important;
   transform: translate3d(0, 0, 0) scale(1) !important;
 }
@@ -373,5 +378,19 @@ body {
     transform: none !important;
     transition: none !important;
   }
+}
+
+/* 30-Second Interactive Card Auto-Reset Countdown */
+@keyframes timer30s {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.animate-timer-30s {
+  animation: timer30s 30s linear forwards;
 }
 
