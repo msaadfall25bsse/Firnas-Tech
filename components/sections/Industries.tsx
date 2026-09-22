@@ -81,12 +81,15 @@ export default function Industries() {
                   alt={activeIndustry.name}
                   fill
                   sizes="(max-width: 1024px) 100vw, 65vw"
-                  className="object-cover object-center scale-100 transition-all duration-700 ease-out opacity-35"
+                  className="object-cover object-center scale-100 transition-all duration-700 ease-out opacity-75 sm:opacity-80 filter brightness-110 contrast-115"
                   priority
                 />
-                {/* Contrast Vignette Gradient: heavy on text side, transparent on image side */}
-                <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-[#070B14] via-[#070B14]/85 to-[#070B14]/45" />
-                <div className="absolute inset-0 bg-[#070B14]/30 backdrop-blur-[1px]" />
+                {/* Responsive Gradient Mask:
+                    Desktop (Laptop): Right side clear & prominent image -> Left side smooth dark fade
+                    Mobile: Top side clear image -> Bottom side smooth dark fade
+                */}
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#070B14]/50 via-50% to-[#070B14]/95 hidden md:block" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/95 via-[#070B14]/60 to-transparent md:hidden" />
               </div>
 
               {/* Background Ambient Glow Accents */}
