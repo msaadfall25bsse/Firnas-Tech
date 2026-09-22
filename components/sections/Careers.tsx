@@ -74,26 +74,27 @@ export default function Careers() {
               </div>
             </div>
 
-          {/* Right Column: Perks Grid */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {perks.map((perk, i) => (
-              <div
-                key={perk.title}
-                className={`glass-card p-6 border-white/[0.08] flex flex-col justify-between hover:border-[#00E599]/40 transition duration-300 scroll-reveal-right stagger-${i + 1}`}
-              >
-                <div>
-                  <span className="text-xs font-mono text-[#00E599] mb-2 block">
-                    0{i + 1} // BENEFIT
-                  </span>
-                  <h4 className="text-sm font-bold text-white mb-2">
-                    {perk.title}
-                  </h4>
-                  <p className="text-xs text-[#94A3B8] leading-relaxed">
-                    {perk.desc}
-                  </p>
+            {/* Right Column: Perks Grid */}
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {perks.map((perk, i) => (
+                <div
+                  key={perk.title}
+                  className={`glass-card p-6 border-white/[0.08] flex flex-col justify-between hover:border-[#00E599]/40 transition duration-300 scroll-reveal-right stagger-${i + 1}`}
+                >
+                  <div>
+                    <span className="text-xs font-mono text-[#00E599] mb-2 block">
+                      0{i + 1} // BENEFIT
+                    </span>
+                    <h4 className="text-sm font-bold text-white mb-2">
+                      {perk.title}
+                    </h4>
+                    <p className="text-xs text-[#94A3B8] leading-relaxed">
+                      {perk.desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
