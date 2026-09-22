@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
+import AboutPhotoSlider from "./AboutPhotoSlider";
 import { SITE_DATA } from "../../data/siteData";
 
 export default function About() {
@@ -63,46 +64,10 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right Column: Official About Us Showcase Banner & Stats */}
+          {/* Right Column: 3D Box Auto-Rotating Photo Slider & Stats */}
           <div className="lg:col-span-6 flex flex-col gap-6 scroll-reveal-right">
-            {/* 1. Official Banner Container with Cyber HUD Bezel */}
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden glass-card p-2 sm:p-3 border-[#00E599]/25 shadow-[0_0_40px_-10px_rgba(0,229,153,0.2)] group transition-all duration-500 hover:border-[#00E599]/50 hover:shadow-[0_0_50px_-5px_rgba(0,229,153,0.3)]">
-              {/* Top HUD Telemetry */}
-              <div className="flex items-center justify-between px-3 py-2 border-b border-white/[0.08] mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#00E599] animate-pulse" />
-                  <span className="text-[11px] font-mono tracking-widest text-[#00E599] uppercase">
-                    GLOBAL_TECH_HUB // HQ_OPS
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-[#94A3B8]">4 REGIONS</span>
-                  <Badge variant="emerald" size="sm">Active</Badge>
-                </div>
-              </div>
-
-              {/* Main Banner Image */}
-              <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[1024/703] w-full">
-                <Image
-                  src="/about-us-banner.jpg"
-                  alt="Firnas Tech About Us Global Team and Operations"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center transform transition-transform duration-700 group-hover:scale-[1.03]"
-                  priority
-                />
-                {/* Subtle cyber edge vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#05080F]/70 via-transparent to-transparent pointer-events-none" />
-
-                {/* Floating On-Image Verified Badge */}
-                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10">
-                  <div className="px-3 py-1.5 rounded-lg bg-[#05080F]/85 backdrop-blur-md border border-white/15 flex items-center gap-2 shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-[#00E599] animate-ping" />
-                    <span className="text-xs font-semibold text-white">Firnas Tech Engineering Hub</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* 1. Interactive 3D Box Slider Showcase Container */}
+            <AboutPhotoSlider />
 
             {/* 2. High-Tech Stats Grid Under Banner */}
             <div className="glass-card p-6 sm:p-7 border-white/10 relative overflow-hidden">
