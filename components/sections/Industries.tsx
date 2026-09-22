@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
-import { SITE_DATA } from "../../data/siteData";
+import { SITE_DATA, IndustryItem } from "../../data/siteData";
 
 // Map each industry vertical to its authentic high-definition image
 const INDUSTRY_IMAGES: Record<string, string> = {
@@ -20,9 +20,17 @@ const INDUSTRY_IMAGES: Record<string, string> = {
 };
 
 export default function Industries() {
-  const [activeTab, setActiveTab] = useState(0);
-  const activeIndustry = SITE_DATA.industries[activeTab];
-  const activeImage = INDUSTRY_IMAGES[activeIndustry.id] || "/industries/industry_logistics.jpg";
+  const [selectedIndustry, setSelectedIndustry] = useState<IndustryItem | null>(null);
+
+  const openModal = (ind: IndustryItem) => {
+    setSelectedIndustry(ind);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setSelectedIndustry(null);
+    document.body.style.overflow = "unset";
+  };
 
   return (
     <section id="industries" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
@@ -40,121 +48,156 @@ export default function Industries() {
           </p>
         </div>
 
-        {/* Interactive Industry Explorer */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Vertical/Horizontal Industry Tab List */}
-          <div className="lg:col-span-4 flex flex-row lg:flex-col gap-2 overflow-x-auto pb-4 lg:pb-0 scrollbar-none scroll-reveal-left">
-            {SITE_DATA.industries.map((ind, index) => {
-              const isActive = activeTab === index;
-              return (
-                <button
-                  key={ind.id}
-                  onClick={() => setActiveTab(index)}
-                  className={`px-5 py-3.5 rounded-xl text-left font-medium transition-all duration-300 flex items-center justify-between shrink-0 lg:shrink select-none cursor-pointer ${
-                    isActive
-                      ? "bg-[#0070F3] text-white shadow-[0_0_25px_-5px_rgba(0,112,243,0.5)] border border-[#00A3FF]/40"
-                      : "bg-white/[0.02] border border-white/[0.06] text-[#94A3B8] hover:bg-white/[0.06] hover:text-white"
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className={`text-xs font-mono ${isActive ? "text-white/80" : "text-[#64748B]"}`}>
-                      0{index + 1}
-                    </span>
-                    <span className="text-sm font-semibold">{ind.name}</span>
-                  </div>
-                  <span className={`text-xs transition-transform duration-300 ${isActive ? "translate-x-1" : "opacity-40"}`}>
+        {/* 9 Industry Cards Grid:
+            - Desktop / Laptop: 3 Columns x 3 Rows grid layout (or 5 per line responsive flow)
+            - Tablet / Mobile: 3 Columns (or 2-3 responsive grid flow)
+        */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+          {SITE_DATA.industries.map((ind, index) => {
+            const bgImage = INDUSTRY_IMAGES[ind.id] || "/industries/industry_logistics.jpg";
+
+            return (
+              <div
+                key={ind.id}
+                onClick={() => openModal(ind)}
+                className="group relative rounded-2xl overflow-hidden glass-card border border-white/10 hover:border-[#00E599]/60 cursor-pointer transition-all duration-500 shadow-xl hover:-translate-y-1.5 flex flex-col justify-between min-h-[300px] p-6"
+              >
+                {/* Authentic Industry Background Photo with Sharp 75-80% Opacity */}
+                <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                  <Image
+                    src={bgImage}
+                    alt={ind.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover object-center opacity-75 sm:opacity-80 filter brightness-110 contrast-115 group-hover:scale-110 transition-transform duration-700"
+                  />
+                  {/* Subtle Dark Contrast Gradient Mask */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05080F]/95 via-[#05080F]/65 to-black/30" />
+                </div>
+
+                {/* Top Badge & Number */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[#00E599] font-bold">
+                    0{index + 1} // SECTOR
+                  </span>
+                  <span className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-[#00E599] text-white group-hover:text-black flex items-center justify-center text-xs font-bold transition-all duration-300 shadow-lg">
                     &rarr;
                   </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Right Column: Dynamic Interactive Showcase Card */}
-          <div className="lg:col-span-8 scroll-reveal-scale">
-            <div className="glass-card p-8 sm:p-10 relative overflow-hidden border-white/10 min-h-[440px] flex flex-col justify-between shadow-2xl">
-              {/* Dynamic Tailored Industry Background Image */}
-              <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-                <Image
-                  key={activeIndustry.id}
-                  src={activeImage}
-                  alt={activeIndustry.name}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 65vw"
-                  className="object-cover object-center scale-100 transition-all duration-700 ease-out opacity-75 sm:opacity-80 filter brightness-110 contrast-115"
-                  priority
-                />
-                {/* Responsive Gradient Mask:
-                    Desktop (Laptop): Right side clear & prominent image -> Left side smooth dark fade
-                    Mobile: Top side clear image -> Bottom side smooth dark fade
-                */}
-                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#070B14]/50 via-50% to-[#070B14]/95 hidden md:block" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/95 via-[#070B14]/60 to-transparent md:hidden" />
-              </div>
-
-              {/* Background Ambient Glow Accents */}
-              <div className="absolute top-0 right-0 w-80 h-80 bg-[#0070F3]/15 rounded-full blur-3xl pointer-events-none z-0" />
-              <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-[#00E599]/15 rounded-full blur-2xl pointer-events-none z-0" />
-
-              <div className="relative z-10">
-                {/* Active Indicator & Sector */}
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.08]">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#00E599] animate-pulse" />
-                    <span className="text-xs uppercase tracking-widest text-[#00E599] font-mono">
-                      VERTICAL // {activeIndustry.name.toUpperCase()}
-                    </span>
-                  </div>
-                  <Badge variant="cyan" size="sm">
-                    Enterprise Ready
-                  </Badge>
                 </div>
 
-                {/* Dynamic Title & Narrative */}
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-4 tracking-tight">
-                  {activeIndustry.headline}
+                {/* Bottom Card Title & Sub-Text */}
+                <div className="relative z-10 pt-12">
+                  <h3 className="text-xl font-black text-white mb-2 group-hover:text-[#00E599] transition-colors leading-tight">
+                    {ind.name}
+                  </h3>
+                  <p className="text-xs text-[#CBD5E1] line-clamp-2 leading-relaxed font-normal mb-3">
+                    {ind.headline}
+                  </p>
+                  <div className="inline-flex items-center gap-1.5 text-xs text-[#00E599] font-semibold group-hover:underline">
+                    <span>Explore Solutions</span>
+                    <span>&rarr;</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Interactive Modal Popup for Selected Industry Card */}
+      {selectedIndustry && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          {/* Blurred Background Overlay */}
+          <div
+            className="fixed inset-0 bg-[#05080F]/85 backdrop-blur-xl transition-opacity animate-in fade-in duration-300"
+            onClick={closeModal}
+          />
+
+          {/* Modal Content Dialog Box */}
+          <div className="relative w-full max-w-3xl bg-[#0A0F1D] border border-white/15 rounded-3xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.9)] z-10 my-auto animate-in zoom-in-95 duration-200">
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-black/60 hover:bg-white/20 text-[#94A3B8] hover:text-white flex items-center justify-center transition border border-white/10 focus:outline-none"
+              aria-label="Close dialog"
+            >
+              &times;
+            </button>
+
+            {/* Modal Header Banner */}
+            <div className="relative h-56 sm:h-64 w-full overflow-hidden">
+              <Image
+                src={INDUSTRY_IMAGES[selectedIndustry.id] || "/industries/industry_logistics.jpg"}
+                alt={selectedIndustry.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover object-center filter brightness-110 contrast-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1D] via-[#0A0F1D]/50 to-transparent" />
+              
+              <div className="absolute bottom-4 left-6 right-6 z-10">
+                <Badge variant="emerald" dot size="sm" className="mb-2">
+                  VERTICAL // {selectedIndustry.name.toUpperCase()}
+                </Badge>
+                <h3 className="text-2xl sm:text-4xl font-black text-white leading-tight">
+                  {selectedIndustry.name}
                 </h3>
-                <p className="text-base text-[#94A3B8] leading-relaxed mb-8">
-                  {activeIndustry.description}
-                </p>
+              </div>
+            </div>
 
-                {/* Key Strategic Benefits */}
-                <div className="mb-8">
-                  <h4 className="text-xs uppercase tracking-wider text-white font-semibold mb-3">
-                    Specialized Solutions &amp; Capabilities:
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    {activeIndustry.benefits.map((benefit) => (
-                      <div
-                        key={benefit}
-                        className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-xs text-white flex items-start gap-2"
-                      >
-                        <span className="text-[#00E599] mt-0.5">&check;</span>
-                        <span className="leading-snug">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
+            {/* Modal Body Info */}
+            <div className="p-6 sm:p-8 space-y-6">
+              <div>
+                <h4 className="text-lg font-bold text-[#00E599] mb-2">
+                  {selectedIndustry.headline}
+                </h4>
+                <p className="text-sm text-[#CBD5E1] leading-relaxed">
+                  {selectedIndustry.description}
+                </p>
+              </div>
+
+              {/* Capabilities & Solutions List */}
+              <div>
+                <h5 className="text-xs uppercase tracking-wider text-[#94A3B8] font-mono font-semibold mb-3">
+                  Core Specialized Capabilities &amp; Blueprints:
+                </h5>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {selectedIndustry.benefits.map((benefit) => (
+                    <div
+                      key={benefit}
+                      className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white flex items-start gap-2.5"
+                    >
+                      <span className="text-[#00E599] font-bold text-sm">&check;</span>
+                      <span className="leading-snug">{benefit}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Action Bar */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/[0.08]">
-                <span className="text-xs text-[#64748B]">
-                  Tailored architectural blueprints available for {activeIndustry.name}.
+              {/* Action Buttons */}
+              <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span className="text-xs text-[#64748B] font-mono">
+                  Custom architecture ready for {selectedIndustry.name}
                 </span>
-                <Button
-                  href="#contact"
-                  variant="primary-emerald"
-                  size="sm"
-                  className="w-full sm:w-auto"
-                >
-                  Discuss {activeIndustry.name} Solution
-                </Button>
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <Button variant="ghost" size="sm" onClick={closeModal} className="w-full sm:w-auto">
+                    Close Window
+                  </Button>
+                  <Button
+                    href="/contact"
+                    variant="primary-emerald"
+                    size="sm"
+                    onClick={closeModal}
+                    className="w-full sm:w-auto shadow-[0_0_20px_rgba(0,229,153,0.3)]"
+                  >
+                    Discuss Solution &rarr;
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
