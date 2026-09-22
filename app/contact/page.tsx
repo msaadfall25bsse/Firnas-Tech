@@ -20,7 +20,7 @@ export default function ContactPage() {
         title="Let's Bring Your Vision to Life with"
         titleGradient="24/7 Global Agility."
         description="Whether you have an ambitious product idea, need custom enterprise software, or wish to augment your team with pre-vetted engineers, our regional leaders are ready to connect."
-        videoSrc="/Logo_animation_with_circuit_effects_20260921061901.mp4"
+        videoSrc="/videos/hero_contact.mp4"
       >
         <Button href="#contact" variant="primary-emerald" size="md">
           Fill Consultation Form

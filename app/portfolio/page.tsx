@@ -68,7 +68,7 @@ export default function PortfolioPage() {
         title="High-Impact Digital Products Built for"
         titleGradient="Market Leaders."
         description="Explore our portfolio of enterprise web portals, high-security IoT applications, and luxury mobile platforms built for clients across the globe."
-        videoSrc="/Logo_animation_with_circuit_effects_20260921061901.mp4"
+        videoSrc="/videos/hero_portfolio.mp4"
       >
         <Button href="#case-studies" variant="primary-emerald" size="md">
           View Success Stories

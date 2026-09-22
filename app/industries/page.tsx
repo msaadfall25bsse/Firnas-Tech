@@ -20,7 +20,7 @@ export default function IndustriesPage() {
         title="Bespoke Software Architecture for"
         titleGradient="9 High-Growth Sectors."
         description="We combine deep industry domain knowledge with modern cloud, mobile, and AI technologies to build compliant, high-throughput applications."
-        videoSrc="/Logo_animation_with_circuit_effects_20260921061901.mp4"
+        videoSrc="/videos/hero_industries.mp4"
       >
         <Button href="#industries" variant="primary-emerald" size="md">
           Explore Industry Cards

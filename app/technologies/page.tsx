@@ -20,7 +20,7 @@ export default function TechnologiesPage() {
         title="Battle-Tested Tools &"
         titleGradient="Next-Gen AI Frameworks."
         description="Our engineers utilize cutting-edge frontend, backend, AI/ML, cross-platform mobile, and DevOps stacks to construct scalable enterprise systems."
-        videoSrc="/Logo_animation_with_circuit_effects_20260921061901.mp4"
+        videoSrc="/videos/hero_technologies.mp4"
       >
         <Button href="#technologies" variant="secondary-blue" size="md">
           Explore Tech Ecosystem

@@ -23,7 +23,7 @@ export default function AboutPage() {
         title="Engineering Digital Wings for"
         titleGradient="Global Enterprises."
         description="Named in homage to Abbas ibn Firnas—the pioneer who dared to fly—we carry forward the spirit of fearless technological flight across our 4 global delivery hubs."
-        videoSrc="/Logo_animation_with_circuit_effects_20260921061901.mp4"
+        videoSrc="/videos/hero_about.mp4"
       >
         <Button href="#about" variant="primary-emerald" size="md">
           Explore Our Journey

@@ -23,7 +23,7 @@ export default function TalentPage() {
         title="Hire Pre-Vetted Engineers & Scale"
         titleGradient="On Demand."
         description="Access our network of 150+ senior full-stack developers, AI engineers, and UI/UX designers ready to integrate seamlessly into your engineering workflows."
-        videoSrc="/Logo_animation_with_circuit_effects_20260921061901.mp4"
+        videoSrc="/videos/hero_talent.mp4"
       >
         <Button href="#talent" variant="primary-emerald" size="md">
           Meet Team Leaders

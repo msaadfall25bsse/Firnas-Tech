@@ -21,7 +21,7 @@ export default function ServicesPage() {
         title="Scalable Solutions Engineered with"
         titleGradient="Precision & AI Agility."
         description="From bespoke web portals to generative AI integrations and dedicated engineering squads, discover how FIRNAS.TECH drives end-to-end digital transformation."
-        videoSrc="/Logo_animation_with_circuit_effects_20260921061901.mp4"
+        videoSrc="/videos/hero_services.mp4"
       >
         <Button href="#services" variant="primary-emerald" size="md">
           View Interactive Cards
