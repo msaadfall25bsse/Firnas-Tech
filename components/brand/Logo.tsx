@@ -12,9 +12,9 @@ interface LogoProps {
 
 export default function Logo({ className = "", size = "md", withLink = true }: LogoProps) {
   const sizeMap = {
-    sm: { height: 28, width: 181 },
-    md: { height: 38, width: 246 },
-    lg: { height: 48, width: 311 },
+    sm: { height: 28, width: 134 },
+    md: { height: 38, width: 182 },
+    lg: { height: 48, width: 230 },
   };
 
   const { height, width } = sizeMap[size];
