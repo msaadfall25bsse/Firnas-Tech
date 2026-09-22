@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "../brand/Logo";
 import Button from "../ui/Button";
+import DeveloperApplyModal from "../modals/DeveloperApplyModal";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -20,6 +21,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [applyModalOpen, setApplyModalOpen] = useState(false);
   const pathname = usePathname();
 
   // Scroll listener for sticky navbar styling
@@ -38,7 +40,6 @@ export default function Navbar() {
   // Auto-close mobile drawer whenever route changes
   useEffect(() => {
     setMobileMenuOpen(false);
-    // Ensure body scrolling is unlocked when route changes
     document.body.style.overflow = "unset";
   }, [pathname]);
 
@@ -60,6 +61,12 @@ export default function Navbar() {
 
   return (
     <>
+      <DeveloperApplyModal
+        isOpen={applyModalOpen}
+        onClose={() => setApplyModalOpen(false)}
+        developerEmail="msaadbsse296@gmail.com"
+      />
+
       <header
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           isScrolled || mobileMenuOpen
@@ -95,9 +102,10 @@ export default function Navbar() {
           {/* Desktop CTAs */}
           <div className="hidden sm:flex items-center gap-3">
             <Button
-              href="/contact"
+              type="button"
               variant="glass-outline"
               size="sm"
+              onClick={() => setApplyModalOpen(true)}
               className="border-white/10 text-xs"
             >
               Hire Developers
@@ -206,12 +214,12 @@ export default function Navbar() {
               Get Started
             </Button>
             <Button
-              href="/contact"
+              type="button"
               variant="glass-outline"
               size="md"
               onClick={() => {
                 setMobileMenuOpen(false);
-                document.body.style.overflow = "unset";
+                setApplyModalOpen(true);
               }}
               className="w-full text-center"
             >
