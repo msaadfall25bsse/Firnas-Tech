@@ -112,11 +112,14 @@ export default function DeveloperApplyModal({
             <div className="flex items-center justify-between pb-3 border-b border-white/10">
               <div>
                 <h3 className="text-xl font-black text-white">Apply as a Developer</h3>
-                <p className="text-xs text-[#94A3B8] font-mono">Direct Application &rarr; {developerEmail}</p>
+                <p className="text-xs text-[#94A3B8] font-mono">Verified Candidate Pipeline &rarr; {developerEmail}</p>
               </div>
-              <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-[#00E599]/10 text-[#00E599] border border-[#00E599]/30">
-                ● Pre-Vetting Active
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-[#00E599]/15 text-[#00E599] border border-[#00E599]/40 font-bold flex items-center gap-1.5 shadow-[0_0_15px_rgba(0,229,153,0.2)]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00E599] animate-ping" />
+                  VERIFICATION READY
+                </span>
+              </div>
             </div>
 
             {error && (
