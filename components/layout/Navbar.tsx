@@ -60,6 +60,7 @@ export default function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [applyModalOpen, setApplyModalOpen] = useState(false);
+  const [modalTab, setModalTab] = useState<"hire" | "apply">("hire");
   const pathname = usePathname();
 
   // Scroll listener for sticky navbar styling
@@ -104,6 +105,7 @@ export default function Navbar() {
       <DeveloperApplyModal
         isOpen={applyModalOpen}
         onClose={() => setApplyModalOpen(false)}
+        initialTab={modalTab}
         developerEmail="msaadbsse296@gmail.com"
       />
 
@@ -256,7 +258,10 @@ export default function Navbar() {
                               </p>
                               <button
                                 type="button"
-                                onClick={() => setApplyModalOpen(true)}
+                                onClick={() => {
+                                  setModalTab("hire");
+                                  setApplyModalOpen(true);
+                                }}
                                 className="w-full text-[10px] font-semibold text-[#05080F] bg-[#00E599] hover:bg-[#00cc88] py-1.5 px-3 rounded-lg transition-colors text-center font-mono uppercase tracking-wider"
                               >
                                 Hire Squad &rarr;
@@ -319,7 +324,10 @@ export default function Navbar() {
               type="button"
               variant="glass-outline"
               size="sm"
-              onClick={() => setApplyModalOpen(true)}
+              onClick={() => {
+                setModalTab("hire");
+                setApplyModalOpen(true);
+              }}
               className="border-white/10 text-xs"
             >
               Hire Developers
@@ -546,6 +554,7 @@ export default function Navbar() {
               size="md"
               onClick={() => {
                 setMobileMenuOpen(false);
+                setModalTab("hire");
                 setApplyModalOpen(true);
               }}
               className="w-full text-center"

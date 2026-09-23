@@ -21,6 +21,7 @@ export default function ServiceDetailView({ service }: ServiceDetailViewProps) {
       <DeveloperApplyModal
         isOpen={applyModalOpen}
         onClose={() => setApplyModalOpen(false)}
+        initialTab="hire"
         developerEmail="msaadbsse296@gmail.com"
       />
 
