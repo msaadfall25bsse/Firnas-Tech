@@ -7,13 +7,47 @@ import Logo from "../brand/Logo";
 import Button from "../ui/Button";
 import DeveloperApplyModal from "../modals/DeveloperApplyModal";
 
-const NAV_LINKS = [
+interface SubLink {
+  label: string;
+  href: string;
+  desc?: string;
+  icon?: string;
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+  subLinks?: SubLink[];
+}
+
+const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
+  {
+    label: "About",
+    href: "/about",
+    subLinks: [
+      { label: "About Us", href: "/about", desc: "Our story, vision & Abbas ibn Firnas heritage" },
+      { label: "Our Team", href: "/talent#talent", desc: "60+ transformation experts & leaders" },
+      { label: "Global Presence", href: "/about#about", desc: "Offices in UK, UAE, Sweden & PK" },
+    ],
+  },
+  {
+    label: "Our Services",
+    href: "/services",
+    subLinks: [
+      { label: "Web Development", href: "/services", desc: "Portals, e-commerce & modern web apps", icon: "🌐" },
+      { label: "Mobile Application", href: "/services", desc: "iOS, Android & Flutter cross-platform", icon: "📱" },
+      { label: "Custom Software", href: "/services", desc: "Enterprise systems & scalable APIs", icon: "⚙️" },
+      { label: "AI / ML / GenAI", href: "/services", desc: "LLMs, automation & predictive intelligence", icon: "🤖" },
+      { label: "UI / UX Design", href: "/services", desc: "Human-centric design & motion systems", icon: "🎨" },
+      { label: "Digital Marketing", href: "/services", desc: "SEO, growth strategies & social reach", icon: "📈" },
+      { label: "Branding", href: "/services", desc: "Identities, visual guidelines & logos", icon: "✨" },
+      { label: "Staff Augmentation", href: "/talent", desc: "On-demand dedicated senior squads", icon: "👥" },
+    ],
+  },
   { label: "Industries", href: "/industries" },
   { label: "Technologies", href: "/technologies" },
-  { label: "Projects", href: "/projects" },
+  { label: "Work", href: "/work" },
   { label: "Talent", href: "/talent" },
   { label: "Contact", href: "/contact" },
 ];
@@ -21,6 +55,10 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [applyModalOpen, setApplyModalOpen] = useState(false);
   const pathname = usePathname();
 
@@ -40,6 +78,8 @@ export default function Navbar() {
   // Auto-close mobile drawer whenever route changes
   useEffect(() => {
     setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
+    setAboutDropdownOpen(false);
     document.body.style.overflow = "unset";
   }, [pathname]);
 
@@ -78,22 +118,140 @@ export default function Navbar() {
           {/* Brand Logo */}
           <Logo size="md" />
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-5">
-            {NAV_LINKS.map((link) => {
-              const active = checkIsActive(link.href);
+          {/* Desktop Navigation Links with Rich Dropdown Flow */}
+          <nav className="hidden xl:flex items-center gap-2">
+            {NAV_ITEMS.map((item) => {
+              const active = checkIsActive(item.href);
+              const hasDropdown = Boolean(item.subLinks?.length);
+              const isServices = item.label === "Our Services";
+              const isAbout = item.label === "About";
+
+              if (hasDropdown) {
+                return (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => {
+                      if (isServices) setServicesDropdownOpen(true);
+                      if (isAbout) setAboutDropdownOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      if (isServices) setServicesDropdownOpen(false);
+                      if (isAbout) setAboutDropdownOpen(false);
+                    }}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`text-xs font-semibold tracking-wide py-1.5 px-3 rounded-lg transition-all duration-200 relative flex items-center gap-1.5 ${
+                        active
+                          ? "text-[#00E599] bg-[#00E599]/10 border border-[#00E599]/30"
+                          : "text-[#94A3B8] hover:text-white hover:bg-white/[0.04]"
+                      }`}
+                    >
+                      {active && <span className="w-1.5 h-1.5 rounded-full bg-[#00E599] animate-pulse" />}
+                      <span>{item.label}</span>
+                      <svg
+                        className={`w-3 h-3 transition-transform duration-200 opacity-60 ${
+                          (isServices && servicesDropdownOpen) || (isAbout && aboutDropdownOpen)
+                            ? "rotate-180 text-[#00E599] opacity-100"
+                            : ""
+                        }`}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </Link>
+
+                    {/* Services Mega Dropdown */}
+                    {isServices && (
+                      <div
+                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[540px] transition-all duration-200 ${
+                          servicesDropdownOpen
+                            ? "opacity-100 translate-y-0 pointer-events-auto"
+                            : "opacity-0 translate-y-2 pointer-events-none"
+                        }`}
+                      >
+                        <div className="bg-[#05080F]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+                          <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10 px-2">
+                            <span className="text-[11px] font-mono uppercase tracking-wider text-[#00E599]">
+                              Official Core Offerings
+                            </span>
+                            <Link
+                              href="/services"
+                              className="text-[11px] text-[#94A3B8] hover:text-[#00E599] transition-colors font-medium flex items-center gap-1"
+                            >
+                              All Services &rarr;
+                            </Link>
+                          </div>
+                          <div className="grid grid-cols-2 gap-2">
+                            {item.subLinks?.map((sub) => (
+                              <Link
+                                key={sub.label}
+                                href={sub.href}
+                                className="group/item flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all"
+                              >
+                                <span className="text-lg p-1.5 rounded-lg bg-white/[0.04] border border-white/10 shrink-0 group-hover/item:scale-110 transition-transform">
+                                  {sub.icon}
+                                </span>
+                                <div>
+                                  <div className="text-xs font-semibold text-white group-hover/item:text-[#00E599] transition-colors">
+                                    {sub.label}
+                                  </div>
+                                  <div className="text-[10px] text-[#64748B] leading-tight line-clamp-1 mt-0.5">
+                                    {sub.desc}
+                                  </div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* About Dropdown */}
+                    {isAbout && (
+                      <div
+                        className={`absolute top-full left-0 pt-2 w-64 transition-all duration-200 ${
+                          aboutDropdownOpen
+                            ? "opacity-100 translate-y-0 pointer-events-auto"
+                            : "opacity-0 translate-y-2 pointer-events-none"
+                        }`}
+                      >
+                        <div className="bg-[#05080F]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-3 shadow-[0_20px_50px_rgba(0,0,0,0.85)] flex flex-col gap-1">
+                          {item.subLinks?.map((sub) => (
+                            <Link
+                              key={sub.label}
+                              href={sub.href}
+                              className="p-2.5 rounded-xl hover:bg-white/[0.06] text-left transition-all group"
+                            >
+                              <div className="text-xs font-semibold text-white group-hover:text-[#00E599] transition-colors">
+                                {sub.label}
+                              </div>
+                              <div className="text-[10px] text-[#64748B] mt-0.5">{sub.desc}</div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`text-xs font-semibold tracking-wide py-1 px-2.5 rounded-lg transition-all duration-200 relative flex items-center gap-1.5 ${
+                  key={item.label}
+                  href={item.href}
+                  className={`text-xs font-semibold tracking-wide py-1.5 px-3 rounded-lg transition-all duration-200 relative flex items-center gap-1.5 ${
                     active
                       ? "text-[#00E599] bg-[#00E599]/10 border border-[#00E599]/30"
                       : "text-[#94A3B8] hover:text-white hover:bg-white/[0.04]"
                   }`}
                 >
                   {active && <span className="w-1.5 h-1.5 rounded-full bg-[#00E599] animate-pulse" />}
-                  <span>{link.label}</span>
+                  <span>{item.label}</span>
                 </Link>
               );
             })}
@@ -173,13 +331,104 @@ export default function Navbar() {
           mobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col gap-2.5 max-h-[75vh] overflow-y-auto pr-1">
-          {NAV_LINKS.map((link) => {
-            const active = checkIsActive(link.href);
+        <div className="flex flex-col gap-2 max-h-[75vh] overflow-y-auto pr-1">
+          {NAV_ITEMS.map((item) => {
+            const active = checkIsActive(item.href);
+            const isServices = item.label === "Our Services";
+            const isAbout = item.label === "About";
+
+            if (isServices) {
+              return (
+                <div key={item.label} className="flex flex-col">
+                  <div
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className={`text-base font-semibold py-3 px-4 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
+                      active
+                        ? "text-[#00E599] bg-[#00E599]/15 border-[#00E599]/40"
+                        : "text-[#CBD5E1] border-white/[0.06] bg-white/[0.02]"
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    <span
+                      className={`text-xs transition-transform duration-200 text-[#00E599] ${
+                        mobileServicesOpen ? "rotate-90" : ""
+                      }`}
+                    >
+                      &gt;
+                    </span>
+                  </div>
+
+                  {mobileServicesOpen && (
+                    <div className="grid grid-cols-1 gap-1.5 pl-3 pt-2 pb-1 border-l-2 border-[#00E599]/30 ml-3 mt-1">
+                      {item.subLinks?.map((sub) => (
+                        <Link
+                          key={sub.label}
+                          href={sub.href}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            document.body.style.overflow = "unset";
+                          }}
+                          className="text-xs text-[#94A3B8] hover:text-[#00E599] py-2 px-3 rounded-lg hover:bg-white/[0.04] flex items-center justify-between"
+                        >
+                          <span>
+                            {sub.icon} {sub.label}
+                          </span>
+                          <span className="text-[10px] text-[#64748B] font-mono">&rarr;</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            if (isAbout) {
+              return (
+                <div key={item.label} className="flex flex-col">
+                  <div
+                    onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                    className={`text-base font-semibold py-3 px-4 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
+                      active
+                        ? "text-[#00E599] bg-[#00E599]/15 border-[#00E599]/40"
+                        : "text-[#CBD5E1] border-white/[0.06] bg-white/[0.02]"
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    <span
+                      className={`text-xs transition-transform duration-200 text-[#00E599] ${
+                        mobileAboutOpen ? "rotate-90" : ""
+                      }`}
+                    >
+                      &gt;
+                    </span>
+                  </div>
+
+                  {mobileAboutOpen && (
+                    <div className="grid grid-cols-1 gap-1.5 pl-3 pt-2 pb-1 border-l-2 border-[#00E599]/30 ml-3 mt-1">
+                      {item.subLinks?.map((sub) => (
+                        <Link
+                          key={sub.label}
+                          href={sub.href}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            document.body.style.overflow = "unset";
+                          }}
+                          className="text-xs text-[#94A3B8] hover:text-[#00E599] py-2 px-3 rounded-lg hover:bg-white/[0.04] flex items-center justify-between"
+                        >
+                          <span>{sub.label}</span>
+                          <span className="text-[10px] text-[#64748B] font-mono">&rarr;</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
             return (
               <Link
-                key={link.label}
-                href={link.href}
+                key={item.label}
+                href={item.href}
                 onClick={() => {
                   setMobileMenuOpen(false);
                   document.body.style.overflow = "unset";
@@ -190,7 +439,7 @@ export default function Navbar() {
                     : "text-[#CBD5E1] border-white/[0.06] bg-white/[0.02] hover:text-white hover:bg-white/[0.06]"
                 }`}
               >
-                <span>{link.label}</span>
+                <span>{item.label}</span>
                 {active ? (
                   <span className="w-2.5 h-2.5 rounded-full bg-[#00E599] shadow-[0_0_8px_#00E599]" />
                 ) : (
@@ -231,3 +480,4 @@ export default function Navbar() {
     </>
   );
 }
+

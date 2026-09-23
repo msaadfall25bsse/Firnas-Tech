@@ -112,8 +112,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="hover:text-[#00E599] transition-colors">
-                  Featured Projects
+                <Link href="/work" className="hover:text-[#00E599] transition-colors">
+                  Our Work &amp; Portfolio
                 </Link>
               </li>
               <li>
@@ -133,7 +133,7 @@ export default function Footer() {
         {/* Bottom Bar: Copyright & Location Badges */}
         <div className="border-t border-white/[0.06] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#64748B]">
           <p>
-            &copy; {new Date().getFullYear()} IRNAS.TECH (Firnas.Tech). All rights reserved. Where Ideas Find Wings.
+            &copy; {new Date().getFullYear()} FIRNAS.TECH. All rights reserved. Where Ideas Find Wings.
           </p>
           <div className="flex items-center gap-4">
             <span>Abbottabad, PK</span>

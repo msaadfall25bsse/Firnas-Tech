@@ -50,7 +50,7 @@ export interface NewsItem {
 
 export const SITE_DATA = {
   brand: {
-    name: "IRNAS.TECH",
+    name: "FIRNAS.TECH",
     tagline: "Where Ideas Find Wings",
     subheadline: "Helping Companies Scale with World-Class Technology",
     description:
