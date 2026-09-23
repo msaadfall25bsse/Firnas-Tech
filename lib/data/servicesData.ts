@@ -47,7 +47,7 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     metaTitle: "Web Development Services | FIRNAS.TECH — Scalable Web & SaaS Systems",
     metaDescription:
       "Expert web development services by FIRNAS.TECH. We craft custom web applications, e-commerce stores, scalable cloud portals, and headless CMS architectures.",
-    videoSrc: "/videos/hero_services.mp4",
+    videoSrc: "/videos/services/hero_web_dev.mp4",
     subServices: [
       {
         title: "Web App Development",
@@ -122,7 +122,7 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     metaTitle: "Mobile App Development Services | FIRNAS.TECH — iOS & Android Apps",
     metaDescription:
       "Top-tier mobile application development by FIRNAS.TECH. Native Swift, Kotlin, Flutter & React Native solutions designed for global scale.",
-    videoSrc: "/videos/hero_services.mp4",
+    videoSrc: "/videos/services/hero_mobile_app.mp4",
     subServices: [
       {
         title: "iOS App Development",
@@ -191,7 +191,7 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     metaTitle: "Custom Software Development | FIRNAS.TECH — Enterprise Solutions",
     metaDescription:
       "Custom enterprise software development by FIRNAS.TECH. Tailored microservices, API ecosystems, workflow automations, and legacy modernization.",
-    videoSrc: "/videos/hero_services.mp4",
+    videoSrc: "/videos/services/hero_custom_software.mp4",
     subServices: [
       {
         title: "Enterprise Web & Mobile Systems",
@@ -260,7 +260,7 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     metaTitle: "AI, ML & GenAI Development | FIRNAS.TECH — Enterprise AI Systems",
     metaDescription:
       "Enterprise AI & Machine Learning solutions by FIRNAS.TECH. Custom LLM fine-tuning, RAG agents, computer vision, and OpenAI API integration.",
-    videoSrc: "/videos/hero_services.mp4",
+    videoSrc: "/videos/services/hero_ai_ml.mp4",
     subServices: [
       {
         title: "Custom AI Software Development",
@@ -329,7 +329,7 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     metaTitle: "UI/UX Design Services | FIRNAS.TECH — Intuitive Product Design",
     metaDescription:
       "Modern UI/UX design services by FIRNAS.TECH. Web and mobile design systems, wireframing, usability audits, and interactive motion design.",
-    videoSrc: "/videos/hero_services.mp4",
+    videoSrc: "/videos/services/hero_ui_ux.mp4",
     subServices: [
       {
         title: "Web UI/UX Design",
@@ -396,7 +396,7 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     metaTitle: "Digital Marketing Services | FIRNAS.TECH — SEO & Growth Marketing",
     metaDescription:
       "Full-service digital marketing solutions by FIRNAS.TECH. Technical SEO, Google & Meta Ads, content marketing, and reputation management.",
-    videoSrc: "/videos/hero_services.mp4",
+    videoSrc: "/videos/services/hero_digital_marketing.mp4",
     subServices: [
       {
         title: "Search Engine Optimization (SEO)",
@@ -463,7 +463,7 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     metaTitle: "Branding & Identity Services | FIRNAS.TECH — Corporate Identity",
     metaDescription:
       "Elevate your brand with FIRNAS.TECH. Complete corporate identity, logo design, typography systems, and brand guidelines.",
-    videoSrc: "/videos/hero_services.mp4",
+    videoSrc: "/videos/services/hero_branding.mp4",
     subServices: [
       {
         title: "Logo Design & Redesign",
@@ -528,7 +528,7 @@ export const SERVICES_DATA: Record<string, ServiceDetail> = {
     metaTitle: "Staff Augmentation Services | FIRNAS.TECH — Dedicated Tech Squads",
     metaDescription:
       "Hire pre-vetted senior software engineers with FIRNAS.TECH. On-demand staff augmentation, dedicated teams, and timezone-aligned developers.",
-    videoSrc: "/videos/hero_services.mp4",
+    videoSrc: "/videos/services/hero_staff_aug.mp4",
     subServices: [
       {
         title: "Dedicated Developers",

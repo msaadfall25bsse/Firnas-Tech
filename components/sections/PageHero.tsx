@@ -34,6 +34,7 @@ export default function PageHero({
       {/* 1. Infinite Background Video Loop */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
         <video
+          key={videoSrc}
           autoPlay
           loop
           muted
