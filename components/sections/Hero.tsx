@@ -13,7 +13,7 @@ export default function Hero() {
       {/* 1. Full-Screen Cinematic 3D Circuit Video Background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <video
-          src="/Logo_animation_with_circuit_effects_20260921061901.mp4"
+          src="/videos/please_add_new_white_green_com.mp4"
           autoPlay
           loop
           muted
