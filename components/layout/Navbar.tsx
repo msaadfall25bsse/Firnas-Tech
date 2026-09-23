@@ -168,44 +168,100 @@ export default function Navbar() {
                     {/* Services Mega Dropdown */}
                     {isServices && (
                       <div
-                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[540px] transition-all duration-200 ${
+                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[760px] transition-all duration-200 ${
                           servicesDropdownOpen
                             ? "opacity-100 translate-y-0 pointer-events-auto"
                             : "opacity-0 translate-y-2 pointer-events-none"
                         }`}
                       >
-                        <div className="bg-[#05080F]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
-                          <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10 px-2">
-                            <span className="text-[11px] font-mono uppercase tracking-wider text-[#00E599]">
-                              Official Core Offerings
-                            </span>
-                            <Link
-                              href="/services"
-                              className="text-[11px] text-[#94A3B8] hover:text-[#00E599] transition-colors font-medium flex items-center gap-1"
-                            >
-                              All Services &rarr;
-                            </Link>
-                          </div>
-                          <div className="grid grid-cols-2 gap-2">
-                            {item.subLinks?.map((sub) => (
+                        <div className="bg-[#05080F]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-5 shadow-[0_20px_60px_rgba(0,0,0,0.9)] grid grid-cols-12 gap-5">
+                          {/* Left Column: Core Services Grid */}
+                          <div className="col-span-8 pr-4 border-r border-white/10">
+                            <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+                              <span className="text-[11px] font-mono uppercase tracking-wider text-[#00E599] flex items-center gap-1.5 font-semibold">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#00E599]" />
+                                Core Services & Solutions
+                              </span>
                               <Link
-                                key={sub.label}
-                                href={sub.href}
-                                className="group/item flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all"
+                                href="/services"
+                                className="text-[11px] text-[#94A3B8] hover:text-[#00E599] transition-colors font-medium flex items-center gap-1 group/all"
                               >
-                                <span className="text-lg p-1.5 rounded-lg bg-white/[0.04] border border-white/10 shrink-0 group-hover/item:scale-110 transition-transform">
-                                  {sub.icon}
-                                </span>
-                                <div>
-                                  <div className="text-xs font-semibold text-white group-hover/item:text-[#00E599] transition-colors">
-                                    {sub.label}
-                                  </div>
-                                  <div className="text-[10px] text-[#64748B] leading-tight line-clamp-1 mt-0.5">
-                                    {sub.desc}
-                                  </div>
-                                </div>
+                                View All Services <span className="group-hover/all:translate-x-0.5 transition-transform">&rarr;</span>
                               </Link>
-                            ))}
+                            </div>
+                            <div className="grid grid-cols-2 gap-2">
+                              {item.subLinks?.map((sub) => (
+                                <Link
+                                  key={sub.label}
+                                  href={sub.href}
+                                  className="group/item flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all"
+                                >
+                                  <span className="text-lg p-2 rounded-lg bg-white/[0.04] border border-white/10 shrink-0 group-hover/item:scale-110 group-hover/item:border-[#00E599]/40 transition-all">
+                                    {sub.icon}
+                                  </span>
+                                  <div>
+                                    <div className="text-xs font-semibold text-white group-hover/item:text-[#00E599] transition-colors">
+                                      {sub.label}
+                                    </div>
+                                    <div className="text-[10px] text-[#64748B] leading-tight line-clamp-1 mt-0.5">
+                                      {sub.desc}
+                                    </div>
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Right Column: Tech Stack & Languages Panel */}
+                          <div className="col-span-4 flex flex-col justify-between">
+                            <div>
+                              <div className="pb-3 mb-3 border-b border-white/10">
+                                <span className="text-[11px] font-mono uppercase tracking-wider text-[#94A3B8] font-semibold">
+                                  Tech & Frameworks
+                                </span>
+                              </div>
+                              
+                              <p className="text-[10px] text-[#64748B] mb-3 leading-relaxed">
+                                Technologies we specialize in to deliver high-performance applications:
+                              </p>
+
+                              <div className="flex flex-wrap gap-1.5 mb-4">
+                                {[
+                                  { name: "React / Next.js", icon: "⚡" },
+                                  { name: "Node.js / Python", icon: "🐍" },
+                                  { name: "Flutter / Swift", icon: "📱" },
+                                  { name: "AI & LLMs", icon: "🤖" },
+                                  { name: "AWS & Cloud", icon: "☁️" },
+                                  { name: "GraphQL / REST", icon: "🔗" },
+                                ].map((tech) => (
+                                  <Link
+                                    key={tech.name}
+                                    href="/technologies"
+                                    className="text-[10px] font-medium text-[#CBD5E1] bg-white/[0.04] hover:bg-[#00E599]/15 hover:text-[#00E599] border border-white/10 hover:border-[#00E599]/40 px-2.5 py-1 rounded-lg transition-all flex items-center gap-1.5"
+                                  >
+                                    <span className="text-[11px]">{tech.icon}</span>
+                                    <span>{tech.name}</span>
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Prominent CTA Box */}
+                            <div className="bg-gradient-to-br from-[#00E599]/15 to-emerald-900/20 border border-[#00E599]/30 rounded-xl p-3">
+                              <div className="text-xs font-semibold text-white mb-1">
+                                Need Dedicated Developers?
+                              </div>
+                              <p className="text-[10px] text-[#94A3B8] mb-2.5 leading-snug">
+                                Hire top 1% vetted engineers for your next ambitious project.
+                              </p>
+                              <button
+                                type="button"
+                                onClick={() => setApplyModalOpen(true)}
+                                className="w-full text-[10px] font-semibold text-[#05080F] bg-[#00E599] hover:bg-[#00cc88] py-1.5 px-3 rounded-lg transition-colors text-center font-mono uppercase tracking-wider"
+                              >
+                                Hire Squad &rarr;
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -376,6 +432,28 @@ export default function Navbar() {
                           <span className="text-[10px] text-[#64748B] font-mono">&rarr;</span>
                         </Link>
                       ))}
+
+                      {/* Tech Stack Pills in Mobile Menu */}
+                      <div className="pt-2 mt-2 border-t border-white/10">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#94A3B8] block mb-2 px-3">
+                          Tech & Languages:
+                        </span>
+                        <div className="flex flex-wrap gap-1 px-3">
+                          {["React", "Next.js", "Node.js", "Python", "Flutter", "AI/ML"].map((tech) => (
+                            <Link
+                              key={tech}
+                              href="/technologies"
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                document.body.style.overflow = "unset";
+                              }}
+                              className="text-[10px] bg-white/[0.06] text-[#CBD5E1] px-2 py-0.5 rounded border border-white/10 hover:text-[#00E599]"
+                            >
+                              {tech}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
