@@ -16,10 +16,7 @@ export default function Hero() {
           - Desktop (hidden sm:block): Landscape Video (please_add_new_white_green_com.mp4)
       */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        {/* Mobile Portrait Video:
-            Calibrated to opacity-38 with refined brightness/contrast for a sleek,
-            holographic ambient background that doesn't compete with foreground UI.
-        */}
+        {/* Mobile Portrait Video (9:16 padded fit) */}
         <video
           src="/videos/hero_home_mobile.mp4"
           autoPlay
@@ -27,7 +24,7 @@ export default function Hero() {
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover object-center opacity-40 sm:hidden filter brightness-95 contrast-105 saturate-110"
+          className="w-full h-full object-cover object-center opacity-85 sm:hidden filter brightness-110 contrast-110"
         />
 
         {/* Desktop Landscape Video (16:9) */}
@@ -41,16 +38,9 @@ export default function Hero() {
           className="hidden sm:block w-full h-full object-cover object-center opacity-65 sm:opacity-75 filter brightness-115 contrast-110"
         />
 
-        {/* Mobile Cinematic Multi-Layer Overlays:
-            1. Vertical Atmospheric Bleed (deep black navbar down to seamless #05080F bottom)
-            2. Radial Vignette Focus Mask (softens center logo clash, elevates text hierarchy)
-        */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#05080F]/90 via-[#05080F]/65 via-50% to-[#05080F] sm:hidden" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,8,15,0.25)_0%,#05080F_92%)] sm:hidden" />
-
-        {/* Desktop Responsive Video Fade Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#05080F]/45 via-50% to-[#05080F]/90 hidden sm:block" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#05080F] via-transparent to-transparent hidden sm:block" />
+        {/* Responsive Video Fade Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#05080F]/45 via-50% to-[#05080F]/90 hidden md:block" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#05080F]/95 via-[#05080F]/40 to-transparent md:hidden" />
       </div>
 
       {/* 2. Integrated Anti-Gravity Multi-Depth Physics Canvas */}
@@ -68,26 +58,26 @@ export default function Hero() {
           </Badge>
         </div>
 
-        {/* Hero Headline (Responsive Mobile Typography with 100% Fit & Deep Shadow) */}
-        <h1 className="text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-6 text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] break-words">
+        {/* Hero Headline (Responsive Mobile Typography with 100% Fit) */}
+        <h1 className="text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-6 text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] break-words">
           Where Ideas Find <span className="text-gradient-emerald">Wings</span>.{" "}
           <br className="hidden sm:inline" />
           Scale with <span className="text-gradient-blue">World-Class</span> Tech.
         </h1>
 
         {/* Hero Subtitle */}
-        <p className="text-xs sm:text-xl text-[#CBD5E1] max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-10 font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] px-2 sm:px-0">
+        <p className="text-xs sm:text-xl text-[#CBD5E1] max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-10 font-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] px-2 sm:px-0">
           {SITE_DATA.brand.description}
         </p>
 
-        {/* Dual Primary & Secondary CTAs with Frosted Backdrop Isolation */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-5 mb-10 sm:mb-16 w-full max-w-xs sm:max-w-none mx-auto relative z-20">
+        {/* Dual Primary & Secondary CTAs */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-5 mb-10 sm:mb-16 w-full max-w-xs sm:max-w-none mx-auto">
           <MagneticWrapper strength={0.28}>
             <Button
               href="#contact"
               variant="primary-emerald"
               size="lg"
-              className="w-full sm:w-auto shadow-[0_0_35px_rgba(0,229,153,0.45)] text-xs sm:text-base py-3 sm:py-4 font-semibold"
+              className="w-full sm:w-auto shadow-[0_0_35px_rgba(0,229,153,0.4)] text-xs sm:text-base py-3 sm:py-4"
               icon={
                 <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
                   <path d="M5 12h14M12 5l7 7-7 7" />
@@ -103,7 +93,7 @@ export default function Hero() {
               href="#services"
               variant="glass-outline"
               size="lg"
-              className="w-full sm:w-auto bg-[#05080F]/70 backdrop-blur-md text-xs sm:text-base py-3 sm:py-4 border-white/20"
+              className="w-full sm:w-auto bg-[#05080F]/50 backdrop-blur-md text-xs sm:text-base py-3 sm:py-4"
             >
               Explore Services &amp; Capabilities
             </Button>
