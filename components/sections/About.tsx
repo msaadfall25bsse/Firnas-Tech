@@ -8,13 +8,13 @@ import { SITE_DATA } from "../../data/siteData";
 export default function About() {
   return (
     <section id="about" className="relative py-28 bg-[#05080F]/80 border-t border-white/[0.06] overflow-hidden">
-      {/* 1. Static Fixed High-Tech Background Image (globe, compass, antenna) */}
+      {/* 1. Static Fixed High-Tech Background Image (globe, compass, antenna) - Vivid & Clear */}
       <div
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed opacity-35 mix-blend-screen pointer-events-none z-0"
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed opacity-90 contrast-125 brightness-110 pointer-events-none z-0"
         style={{ backgroundImage: "url('/tech-news-globe-bg.jpg')" }}
       />
-      {/* Gradient vignette for 100% heading and text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#05080F]/90 via-[#05080F]/75 to-[#05080F]/90 pointer-events-none z-0" />
+      {/* Subtle edge vignette so image is crystal clear in center while text stays readable */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#05080F]/70 via-[#05080F]/30 to-[#05080F]/75 pointer-events-none z-0" />
 
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00E599]/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 z-0" />
