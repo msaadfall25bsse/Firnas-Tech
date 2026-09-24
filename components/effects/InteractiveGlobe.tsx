@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { GlobalOffice } from "../../data/siteData";
-import { WORLD_LAND_POINTS } from "../../data/worldPoints";
+import { WORLD_MAP_SPANS, WORLD_COASTLINES } from "../../data/worldMapChart";
 
 interface InteractiveGlobeProps {
   offices: GlobalOffice[];
@@ -74,11 +74,20 @@ export default function InteractiveGlobe({
     resize();
     window.addEventListener("resize", resize);
 
-    // Precompute radian coordinates for land points to avoid repetitive math
-    const landCoords = WORLD_LAND_POINTS.map(([lat, lng]) => ({
-      latRad: (lat * Math.PI) / 180,
-      lngRad: (lng * Math.PI) / 180,
+    // Precompute radian coordinates for land chart spans & coastlines
+    const deg2rad = Math.PI / 180;
+    const precomputedSpans = WORLD_MAP_SPANS.map(([lat, lng1, lng2]) => ({
+      latRad: lat * deg2rad,
+      lng1Rad: lng1 * deg2rad,
+      lng2Rad: lng2 * deg2rad,
     }));
+
+    const precomputedCoastlines = WORLD_COASTLINES.map((poly) =>
+      poly.map(([lat, lng]) => ({
+        latRad: lat * deg2rad,
+        lngRad: lng * deg2rad,
+      }))
+    );
 
     // Precompute office radian coords
     const officeCoords = offices.map((o) => ({
@@ -190,28 +199,68 @@ export default function InteractiveGlobe({
         ctx.stroke();
       });
 
-      // 4. Draw World Continent Matrix Dots
-      for (let i = 0; i < landCoords.length; i++) {
-        const { latRad, lngRad } = landCoords[i];
-        const pt = project(latRad, lngRad);
+      // 4. Draw Real-World Map Chart Continents (Solid Surface Chart + Illuminated Vector Coastlines)
+      // A. Solid / Translucent Continents Surface Fill (Continuous real-world landmass spans)
+      ctx.lineWidth = 1.8;
+      for (let i = 0; i < precomputedSpans.length; i++) {
+        const { latRad, lng1Rad, lng2Rad } = precomputedSpans[i];
+        
+        // Sample span points across longitude to curve accurately on the 3D sphere
+        const lngSpan = lng2Rad - lng1Rad;
+        const steps = Math.max(1, Math.min(8, Math.ceil((lngSpan / Math.PI) * 10)));
+        const dLng = lngSpan / steps;
 
-        if (pt.z > 0) {
-          // Front hemisphere: bright matrix with depth illumination
-          const depth = Math.max(0, pt.z / radius);
-          const alpha = 0.2 + depth * 0.75;
-          const dotSize = 1.0 + depth * 1.2;
+        let isDrawing = false;
+        let avgZ = 0;
+        let visibleCount = 0;
 
-          ctx.fillStyle = `rgba(0, 229, 153, ${alpha})`;
-          ctx.beginPath();
-          ctx.arc(pt.x, pt.y, dotSize, 0, Math.PI * 2);
-          ctx.fill();
-        } else {
-          // Back hemisphere: subtle translucent depth hints
-          if (i % 3 === 0) {
-            ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
-            ctx.fillRect(pt.x, pt.y, 1, 1);
+        ctx.beginPath();
+        for (let s = 0; s <= steps; s++) {
+          const pt = project(latRad, lng1Rad + s * dLng);
+          if (pt.z > -radius * 0.05) {
+            avgZ += pt.z;
+            visibleCount++;
+            if (!isDrawing) {
+              ctx.moveTo(pt.x, pt.y);
+              isDrawing = true;
+            } else {
+              ctx.lineTo(pt.x, pt.y);
+            }
+          } else {
+            isDrawing = false;
           }
         }
+
+        if (visibleCount > 0) {
+          const depth = Math.max(0, avgZ / (visibleCount * radius));
+          // Glowing cyber chart continent fill
+          ctx.strokeStyle = `rgba(0, 229, 153, ${0.12 + depth * 0.28})`;
+          ctx.stroke();
+        }
+      }
+
+      // B. Crisp Real-World Chart Coastlines & Continent Boundaries
+      ctx.lineWidth = 1.2;
+      for (let c = 0; c < precomputedCoastlines.length; c++) {
+        const poly = precomputedCoastlines[c];
+        let isDrawing = false;
+
+        ctx.beginPath();
+        for (let p = 0; p < poly.length; p++) {
+          const pt = project(poly[p].latRad, poly[p].lngRad);
+          if (pt.z > 0) {
+            if (!isDrawing) {
+              ctx.moveTo(pt.x, pt.y);
+              isDrawing = true;
+            } else {
+              ctx.lineTo(pt.x, pt.y);
+            }
+          } else {
+            isDrawing = false;
+          }
+        }
+        ctx.strokeStyle = "rgba(0, 229, 153, 0.75)";
+        ctx.stroke();
       }
 
       // 5. Connecting Cyber Arcs (Flight trajectories from Pakistan to other 4 offices)
