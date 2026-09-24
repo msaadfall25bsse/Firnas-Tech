@@ -119,16 +119,16 @@ export default function Testimonials() {
               &larr;
             </button>
 
-            {/* Interactive Navigation Dots (4 Reviews) */}
-            <div className="flex items-center gap-3">
+            {/* Navigation Dots (4 Reviews) */}
+            <div className="flex items-center gap-2.5">
               {SITE_DATA.testimonials.map((item, dotIdx) => (
                 <button
                   key={dotIdx}
                   onClick={() => setCurrentIndex(dotIdx)}
-                  className={`h-2.5 rounded-full transition-all duration-500 cursor-pointer ${
+                  className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                     currentIndex === dotIdx
-                      ? "w-10 bg-gradient-to-r from-[#00E599] to-[#0070F3] shadow-[0_0_15px_rgba(0,229,153,0.6)]"
-                      : "w-2.5 bg-white/20 hover:bg-white/40"
+                      ? "bg-[#00E599] shadow-[0_0_10px_rgba(0,229,153,0.7)] scale-110"
+                      : "bg-white/20 hover:bg-white/40"
                   }`}
                   aria-label={`View review ${dotIdx + 1} from ${item.author}`}
                 />
