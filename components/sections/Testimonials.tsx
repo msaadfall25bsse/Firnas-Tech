@@ -22,7 +22,15 @@ export default function Testimonials() {
   const current = SITE_DATA.testimonials[currentIndex];
 
   return (
-    <section id="testimonials" className="relative py-28 bg-[#05080F] border-t border-white/[0.06] overflow-hidden">
+    <section id="testimonials" className="relative py-28 bg-[#05080F]/80 border-t border-white/[0.06] overflow-hidden">
+      {/* 1. Static Fixed High-Tech Background Image (globe, compass, antenna) */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed opacity-35 mix-blend-screen pointer-events-none z-0"
+        style={{ backgroundImage: "url('/tech-news-globe-bg.jpg')" }}
+      />
+      {/* Gradient vignette for 100% heading and text legibility */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#05080F]/90 via-[#05080F]/75 to-[#05080F]/90 pointer-events-none z-0" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">

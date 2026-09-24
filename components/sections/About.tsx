@@ -7,10 +7,18 @@ import { SITE_DATA } from "../../data/siteData";
 
 export default function About() {
   return (
-    <section id="about" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
+    <section id="about" className="relative py-28 bg-[#05080F]/80 border-t border-white/[0.06] overflow-hidden">
+      {/* 1. Static Fixed High-Tech Background Image (globe, compass, antenna) */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed opacity-35 mix-blend-screen pointer-events-none z-0"
+        style={{ backgroundImage: "url('/tech-news-globe-bg.jpg')" }}
+      />
+      {/* Gradient vignette for 100% heading and text legibility */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#05080F]/90 via-[#05080F]/75 to-[#05080F]/90 pointer-events-none z-0" />
+
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00E599]/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#0070F3]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00E599]/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 z-0" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#0070F3]/5 rounded-full blur-3xl pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
