@@ -10,7 +10,7 @@ import Button from "@/components/ui/Button";
 export const metadata = {
   title: "About Us | FIRNAS.TECH — Global Delivery & Engineering Flight",
   description:
-    "Learn about FIRNAS.TECH's journey, team of 60+ engineers across 4 countries (UK, UAE, Sweden, PK), academic MOUs, and enterprise digital transformation.",
+    "Learn about FIRNAS.TECH's journey, team of 60+ engineers across 5 countries (UK, UAE, Saudi Arabia, Sweden, PK), academic MOUs, and enterprise digital transformation.",
 };
 
 export default function AboutPage() {
@@ -22,7 +22,7 @@ export default function AboutPage() {
         badgeVariant="emerald"
         title="Engineering Digital Wings for"
         titleGradient="Global Enterprises."
-        description="Named in homage to Abbas ibn Firnas—the pioneer who dared to fly—we carry forward the spirit of fearless technological flight across our 4 global delivery hubs."
+        description="Named in homage to Abbas ibn Firnas—the pioneer who dared to fly—we carry forward the spirit of fearless technological flight across our 5 global delivery hubs."
         videoSrc="/videos/hero_about.mp4"
       >
         <Button href="#about" variant="primary-emerald" size="md">

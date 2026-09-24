@@ -28,7 +28,7 @@ export default function About() {
             </h2>
 
             <p className="text-base sm:text-lg text-[#94A3B8] leading-relaxed">
-              Firnas.tech is a leading IT service provider dedicated to helping companies transform and expand their digital capabilities. With a team of over 60 skilled professionals across 4 countries, we design and implement robust digital infrastructure that empowers our clients to excel in fast-changing environments.
+              Firnas.tech is a leading IT service provider dedicated to helping companies transform and expand their digital capabilities. With a team of over 60 skilled professionals across 5 countries, we design and implement robust digital infrastructure that empowers our clients to excel in fast-changing environments.
             </p>
 
             <p className="text-sm text-[#64748B] leading-relaxed">
