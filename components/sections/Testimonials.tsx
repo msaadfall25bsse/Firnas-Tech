@@ -6,16 +6,14 @@ import { SITE_DATA } from "../../data/siteData";
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-switch review every 4 seconds with smooth slide motion
+  // Unconditional auto-switch review every 6 seconds: new enters from right, old exits to left
   useEffect(() => {
-    if (isPaused) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % SITE_DATA.testimonials.length);
-    }, 4000);
+    }, 6000);
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, []);
 
   const prevTestimonial = () => {
     setCurrentIndex((prev) =>
@@ -46,23 +44,9 @@ export default function Testimonials() {
         </div>
 
         {/* Sliding Carousel Viewport (1 Review Visible at a time on all screens) */}
-        <div
-          className="max-w-4xl mx-auto relative scroll-reveal-scale"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
+        <div className="max-w-4xl mx-auto relative scroll-reveal-scale">
           {/* Subtle Ambient Back Glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#00E599]/10 rounded-full blur-3xl pointer-events-none" />
-
-          {/* Top 4-Second Animated Progress Bar */}
-          <div className="h-1 bg-white/[0.06] rounded-full overflow-hidden mb-4 max-w-md mx-auto">
-            <div
-              key={`prog-${currentIndex}-${isPaused}`}
-              className={`h-full bg-gradient-to-r from-[#00E599] via-[#0070F3] to-[#00E599] ${
-                isPaused ? "w-full opacity-50" : "animate-progress-4s"
-              }`}
-            />
-          </div>
 
           {/* Overflow-Hidden Viewport Window */}
           <div className="overflow-hidden rounded-3xl p-1">
