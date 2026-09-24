@@ -7,7 +7,7 @@ import { SITE_DATA } from "../../data/siteData";
 
 export default function About() {
   return (
-    <section id="about" className="relative py-28 bg-[#070B14]/60 backdrop-blur-[2px] border-t border-white/[0.06] overflow-hidden">
+    <section id="about" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00E599]/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#0070F3]/5 rounded-full blur-3xl pointer-events-none" />
