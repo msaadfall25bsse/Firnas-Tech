@@ -18,50 +18,64 @@ import Contact from "@/components/sections/Contact";
 export default function Home() {
   return (
     <main className="flex-1">
-      {/* 1. Full Hero Section with 3D Circuit Video Background */}
+      {/* 1. Full Hero Section with 3D Circuit Video Background (Untouched) */}
       <Hero />
 
-      {/* 2. About IRNAS.TECH Section */}
-      <About />
+      {/* 2. Lower Sections Wrapper with Fixed High-Tech Globe / Compass / Antenna Background Image */}
+      <div className="relative bg-[#05080F]">
+        {/* Fixed Ambient Background Image (Stay Paki Paki behind section headings & content) */}
+        <div 
+          className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-cover bg-center bg-no-repeat bg-fixed opacity-40 mix-blend-screen"
+          style={{ backgroundImage: "url('/tech-news-globe-bg.jpg')" }}
+        />
+        {/* Subtle Dark Vignette & Mesh Overlay for Maximum Legibility of Section Headings */}
+        <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-gradient-to-b from-[#05080F]/90 via-[#05080F]/70 to-[#05080F]/90" />
 
-      {/* 3. Core Services (8 Categories with 30s Auto-Reset Flip Cards) */}
-      <Services />
+        {/* Content Layer (Float smoothly over stay background) */}
+        <div className="relative z-10">
+          {/* 2. About IRNAS.TECH Section */}
+          <About />
 
-      {/* 4. Industries Explorer (9 Verticals) */}
-      <Industries />
+          {/* 3. Core Services (8 Categories with 30s Auto-Reset Flip Cards) */}
+          <Services />
 
-      {/* 5. Technologies Ecosystem (13 Framework Categories) */}
-      <Technologies />
+          {/* 4. Industries Explorer (9 Verticals) */}
+          <Industries />
 
-      {/* 6. Global Delivery Network (4 Registered Countries) */}
-      <GlobalPresence />
+          {/* 5. Technologies Ecosystem (13 Framework Categories) */}
+          <Technologies />
 
-      {/* 7. Engagement Models */}
-      <EngagementModels />
+          {/* 6. Global Delivery Network (5 Registered Countries) */}
+          <GlobalPresence />
 
-      {/* 8. Pre-Vetted Talent Network */}
-      <TalentNetwork />
+          {/* 7. Engagement Models */}
+          <EngagementModels />
 
-      {/* 9. 3-Step Hiring Process */}
-      <HiringProcess />
+          {/* 8. Pre-Vetted Talent Network */}
+          <TalentNetwork />
 
-      {/* 10. 6-Stage Product Development Process */}
-      <ProductProcess />
+          {/* 9. 3-Step Hiring Process */}
+          <HiringProcess />
 
-      {/* 11. Verified Client Testimonials */}
-      <Testimonials />
+          {/* 10. 6-Stage Product Development Process */}
+          <ProductProcess />
 
-      {/* 12. Latest News & Academic MOUs */}
-      <NewsEvents />
+          {/* 11. Verified Client Testimonials */}
+          <Testimonials />
 
-      {/* 13. Careers & Culture */}
-      <Careers />
+          {/* 12. Latest News & Academic MOUs */}
+          <NewsEvents />
 
-      {/* 14. Final Impact CTA */}
-      <FinalCta />
+          {/* 13. Careers & Culture */}
+          <Careers />
 
-      {/* 15. Contact & Technical Discovery */}
-      <Contact />
+          {/* 14. Final Impact CTA */}
+          <FinalCta />
+
+          {/* 15. Contact & Technical Discovery */}
+          <Contact />
+        </div>
+      </div>
     </main>
   );
 }

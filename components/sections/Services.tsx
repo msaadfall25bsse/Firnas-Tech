@@ -123,7 +123,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="relative py-28 bg-[#05080F] border-t border-white/[0.06] overflow-hidden">
+    <section id="services" className="relative py-28 bg-[#05080F]/65 backdrop-blur-[2px] border-t border-white/[0.06] overflow-hidden">
       {/* Ambient Lighting Orbs */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00E599]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#0070F3]/5 rounded-full blur-3xl pointer-events-none" />

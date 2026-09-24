@@ -33,7 +33,7 @@ export default function Industries() {
   };
 
   return (
-    <section id="industries" className="relative py-28 bg-[#070B14] border-t border-white/[0.06] overflow-hidden">
+    <section id="industries" className="relative py-28 bg-[#070B14]/65 backdrop-blur-[2px] border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
